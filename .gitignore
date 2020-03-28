@@ -11,4 +11,3 @@
 
 # Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 *.backup
-flows_cred.json
