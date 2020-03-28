@@ -1,23 +1,11 @@
 {
-    "name": "HickoryHomeAutomation",
-    "description": "Automation flows for home",
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
     "version": "0.0.1",
+    "private": true,
     "dependencies": {
-        "node-red-contrib-bigtimer": "2.2.5",
-        "node-red-contrib-home-assistant-websocket": "0.15.0",
-        "node-red-contrib-light-scheduler": "0.0.14",
-        "node-red-contrib-moment": "3.0.3",
-        "node-red-contrib-time-range-switch": "0.6.1",
-        "node-red-contrib-traffic": "0.2.1",
-        "node-red-contrib-vacation-timer": "2.2.8",
-        "node-red-contrib-weekday": "0.1.0",
-        "node-red-dashboard": "2.16.2",
-        "node-red-node-geofence": "0.1.2"
-    },
-    "node-red": {
-        "settings": {
-            "flowFile": "flows.json",
-            "credentialsFile": "flows_cred.json"
-        }
+        "node-red-contrib-light-scheduler": "0.0.15",
+        "node-red-contrib-vacation-timer": "~2.2.8",
+        "node-red-contrib-weekday": "~0.1.0"
     }
 }
