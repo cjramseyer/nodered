@@ -1,0 +1,143 @@
+<script type="text/javascript">
+    RED.nodes.registerType('holiday', {
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: { value: "" },
+            country: { value: "", required: true },
+            state: { value: "" },
+            region: { value: "" },
+            languages: { value: "" },
+            typePublic: { value: true },
+            typeBank: { value: true },
+            typeSchool: { value: true },
+            typeObservance: { value: false },
+            typeOptional: { value: false },
+            weekend: { value: "6,0" } // Saturday and Sunday
+        },
+        inputs: 1,
+        inputLabels: ['timestamp'],
+        outputs: 2,
+        outputLabels: ['Is holiday', 'Is not holiday'],
+        icon: "font-awesome/fa-calendar",
+        label: function () {
+            return this.name || "holiday";
+        },
+        oneditprepare: function () {
+            $("#weekend-row input[type=checkbox]").removeAttr("checked");
+            this.weekend.split(",").forEach(function (v) {
+                $("#weekend-row [value=" + v + "]").prop("checked", true);
+            });
+        },
+        oneditsave: function () {
+            var days = $('#weekend-row input[type=checkbox]:checked').map(function (_, el) {
+                return $(el).val()
+            }).get();
+
+            if (days.length == 0)
+                this.weekend = "";
+            else
+                this.weekend = days.join(",");
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="holiday">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-country">Country</label>
+        <input type="text" id="node-input-country" placeholder="Country (required)">
+    </div>
+    <div class="form-row">
+        <label for="node-input-state">State</label>
+        <input type="text" id="node-input-state" placeholder="State">
+    </div>
+    <div class="form-row">
+        <label for="node-input-region">Region</label>
+        <input type="text" id="node-input-region" placeholder="Region">
+    </div>
+
+    <hr />
+
+    <div class="form-row">
+        <label for="node-input-languages">Languages</label>
+        <input type="text" id="node-input-languages" placeholder="Languages">
+    </div>
+
+    <div class="form-row" style="margin-bottom: 0">
+        <label for="node-input-types">Holiday types</label>
+        <input type="checkbox" id="node-input-typePublic" style="display:inline-block; width:15px; vertical-align:baseline;">
+        <label for="node-input-typePublic" class="wide">Public holidays</label>
+    </div>
+    <div class="form-row" style="margin-bottom: 0">
+        <label for="node-input-types">&nbsp;</label>
+        <input type="checkbox" id="node-input-typeBank" style="display:inline-block; width:15px; vertical-align:baseline;">
+        <label for="node-input-typeBank" class="wide">Bank holidays</label>
+    </div>
+    <div class="form-row" style="margin-bottom: 0">
+        <label for="node-input-types">&nbsp;</label>
+        <input type="checkbox" id="node-input-typeSchool" style="display:inline-block; width:15px; vertical-align:baseline;">
+        <label for="node-input-typeSchool" class="wide">School holidays</label>
+    </div>
+    <div class="form-row" style="margin-bottom: 0">
+        <label for="node-input-types">&nbsp;</label>
+        <input type="checkbox" id="node-input-typeObservance" style="display:inline-block; width:15px; vertical-align:baseline;">
+        <label for="node-input-typeObservance" class="wide">Observances</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-types">&nbsp;</label>
+        <input type="checkbox" id="node-input-typeOptional" style="display:inline-block; width:15px; vertical-align:baseline;">
+        <label for="node-input-typeOptional" class="wide">Optional holidays</label>
+    </div>
+
+    <div class="form-row weekend-row" id="weekend-row">
+        <label>Weekend</label>
+        <div class="weekend-days">
+            <div>
+                <label><input type='checkbox' checked value='1'/> Monday</span></label>
+                <label><input type='checkbox' checked value='2'/> Tuesday</span></label>
+                <label><input type='checkbox' checked value='3'/> Wednesday</span></label>
+            </div>
+            <div>
+                <label><input type='checkbox' checked value='4'/> Thursday</span></label>
+                <label><input type='checkbox' checked value='5'/> Friday</span></label>
+                <label><input type='checkbox' checked value='6'/> Saturday</span></label>
+            </div>
+            <div>
+                <label><input type='checkbox' checked value='0'/> Sunday</span></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-tips">
+        For details about available countries, regions, states and languages, see <a href="https://github.com/commenthol/date-holidays" target="_blank">https://github.com/commenthol/date-holidays</a>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="holiday">
+    <p>A node that will tell you if a given time falls within a holiday or a weekend.</p>
+</script>
+
+<style>
+    label.wide {
+        width: 60% !important;
+    }
+
+    .weekend-row>label {
+        vertical-align: top;
+    }
+
+    .weekend-days input {
+        width: auto !important;
+        vertical-align: baseline !important;
+    }
+
+    .weekend-days {
+        width: 70%;
+        display: inline-block;
+    }
+</style>

@@ -1,5 +1,5 @@
 # A * ensures that everything will be ignored.
-*
+flows_cred.json
 
 # You can whitelist files/folders with !, these will not be ignored.
 !*.yaml

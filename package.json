@@ -4,7 +4,12 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "node-red-contrib-calc-next-work-days": "0.0.6",
+        "node-red-contrib-holiday": "~1.0.0",
+        "node-red-contrib-light-fx": "~0.1.6",
         "node-red-contrib-light-scheduler": "0.0.15",
+        "node-red-contrib-schedex": "~1.10.2",
+        "node-red-contrib-scheduler": "~1.0.5",
         "node-red-contrib-vacation-timer": "~2.2.8",
         "node-red-contrib-weekday": "~0.1.0"
     }

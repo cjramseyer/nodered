@@ -1,0 +1,56 @@
+<script type="text/javascript">
+	RED.nodes.registerType('weekday',{
+		category: 'function' ,
+		color: '#F3B567',
+		defaults: {
+			name: {value:""},
+			sun: {value:true},
+			mon: {value:true},
+			tue: {value:true},
+			wed: {value:true},
+			thu: {value:true},
+			fri: {value:true},
+			sat: {value:true}
+		},
+		inputs:1,
+		outputs:2,
+		icon: "switch.png",
+		label: function() {
+			return this.name||"weekday";
+		}
+	});
+</script>
+
+<script type="text/x-red" data-template-name="weekday">
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>>
+	<div class="form-row">
+		<span style="width: 55px; float: left; margin-left: 5px;">
+		<input type="checkbox" id="node-input-sun" placeholder="sun" > Sun </span>
+		<span style="width: 55px; float: left; margin-left: 5px;">
+		<input type="checkbox" id="node-input-mon" placeholder="mon" > Mon </span>
+		<span style="width: 55px; float: left; margin-left: 5px;">
+		<input type="checkbox" id="node-input-tue" placeholder="tue" > Tue </span>
+		<span style="width: 55px; float: left; margin-left: 5px;">
+		<input type="checkbox" id="node-input-wed" placeholder="wed" > Wed </span>
+		<span style="width: 55px; float: left; margin-left: 5px;">
+		<input type="checkbox" id="node-input-thu" placeholder="thu" > Thu </span>
+		<span style="width: 55px; float: left; margin-left: 5px;">
+		<input type="checkbox" id="node-input-fri" placeholder="fri" > Fri </span>
+		<span style="width: 55px; float: left; margin-left: 5px;">
+		<input type="checkbox" id="node-input-sat" placeholder="sat" > Sat </span>
+	</div>
+	<br/><br/>
+	<div class="form-row">
+		<p> Check the days you want to route output to Output 1 </p>
+		<p> Uncheck days you want to route output to Output 2 </p>
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="weekday">
+	<p> Switch payload to different output depending on day of the week.</p>
+	<p> Takes input payload and routes it to output 1 if the current date is on a selected day of the week.</p>
+	<p> Otherwise routes payload to output 2. </p>
+</script>
