@@ -4,13 +4,19 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-        "node-red-contrib-calc-next-work-days": "0.0.6",
-        "node-red-contrib-holiday": "~1.0.0",
-        "node-red-contrib-light-fx": "~0.1.6",
-        "node-red-contrib-light-scheduler": "0.0.15",
-        "node-red-contrib-schedex": "~1.10.2",
-        "node-red-contrib-scheduler": "~1.0.5",
+        "node-red-contrib-alexa-home-skill": "~0.1.18",
+        "node-red-contrib-battery": "~1.0.1",
+        "node-red-contrib-bigtimer": "~2.7.2",
+        "node-red-contrib-cast": "~0.2.17",
+        "node-red-contrib-excursion": "~0.1.7",
+        "node-red-contrib-home-assistant-websocket": "~0.27.9",
+        "node-red-contrib-influxdb": "~0.5.3",
+        "node-red-contrib-light-scheduler": "0.0.16",
         "node-red-contrib-vacation-timer": "~2.2.8",
-        "node-red-contrib-weekday": "~0.1.0"
+        "node-red-contrib-weekday": "~0.1.0",
+        "node-red-dashboard": "~2.26.0",
+        "node-red-node-geofence": "~0.2.0",
+        "node-red-node-pi-gpio": "~1.2.3",
+        "node-red-node-random": "~0.3.0"
     }
 }
