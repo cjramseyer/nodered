@@ -14,7 +14,7 @@
         "node-red-contrib-light-scheduler": "0.0.16",
         "node-red-contrib-vacation-timer": "~2.2.8",
         "node-red-contrib-weekday": "~0.1.0",
-        "node-red-dashboard": "~2.26.0",
+        "node-red-dashboard": "~2.26.2",
         "node-red-node-geofence": "~0.2.0",
         "node-red-node-pi-gpio": "~1.2.3",
         "node-red-node-random": "~0.3.0"
