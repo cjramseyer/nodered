@@ -1,0 +1,1525 @@
+[
+    {
+        "id": "d3a6c9b0.41f988",
+        "type": "subflow",
+        "name": "Set Comfort Temp",
+        "info": "",
+        "category": "climate",
+        "in": [
+            {
+                "x": 40,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "770e72c.29fd18c"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "color": "#3FADB5"
+    },
+    {
+        "id": "770e72c.29fd18c",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "HVAC Mode",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "climate.hallway_thermostat",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "d3e03953.e8b538"
+            ]
+        ]
+    },
+    {
+        "id": "d3e03953.e8b538",
+        "type": "switch",
+        "z": "d3a6c9b0.41f988",
+        "name": "heat/cool",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "heat",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "cool",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "auto",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "1b30cfa0.25c66"
+            ],
+            [
+                "bfedd2ee.ba92c"
+            ],
+            [
+                "1b30cfa0.25c66",
+                "bfedd2ee.ba92c"
+            ]
+        ]
+    },
+    {
+        "id": "1b30cfa0.25c66",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "Get Heat Comfort Temp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_number.heat_comfort_temp",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 590,
+        "y": 60,
+        "wires": [
+            [
+                "85c2486.b2473b8"
+            ]
+        ]
+    },
+    {
+        "id": "bfedd2ee.ba92c",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "Get Cool Comfort Temp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_number.heat_comfort_temp",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "f56c82a3.6e2ea"
+            ]
+        ]
+    },
+    {
+        "id": "f56c82a3.6e2ea",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "Current setpoint > Comfort Temp (Cool)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "payload",
+        "halt_if_type": "msg",
+        "halt_if_compare": "gt",
+        "override_topic": false,
+        "entity_id": "climate.hallway_thermostat",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 900,
+        "y": 140,
+        "wires": [
+            [
+                "6c542f23.5d9b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "85c2486.b2473b8",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "Current setpoint < Comfort Temp (Heat)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "payload",
+        "halt_if_type": "msg",
+        "halt_if_compare": "lt",
+        "override_topic": false,
+        "entity_id": "climate.hallway_thermostat",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 900,
+        "y": 60,
+        "wires": [
+            [
+                "6c542f23.5d9b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6c542f23.5d9b",
+        "type": "api-call-service",
+        "z": "d3a6c9b0.41f988",
+        "name": "Set comfort temp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_temperature",
+        "entityId": "",
+        "data": "{\"entity_id\":\"climate.hallway_thermostat\",\"temperature\":\"{{payload}}\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1210,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d149ef89.67e71",
+        "type": "tab",
+        "label": "WFH2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1b604c9b.34a453",
+        "type": "bigtimer",
+        "z": "d149ef89.67e71",
+        "outtopic": "",
+        "outpayload1": "on",
+        "outpayload2": "off",
+        "name": "CJ Office Hours",
+        "comment": "",
+        "lat": "42.64036",
+        "lon": "-83.13634",
+        "starttime": "420",
+        "endtime": "1080",
+        "starttime2": 0,
+        "endtime2": 0,
+        "startoff": 0,
+        "endoff": 0,
+        "startoff2": 0,
+        "endoff2": 0,
+        "offs": 0,
+        "outtext1": "on",
+        "outtext2": "off",
+        "timeout": 1440,
+        "sun": false,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": false,
+        "jan": true,
+        "feb": true,
+        "mar": true,
+        "apr": true,
+        "may": true,
+        "jun": true,
+        "jul": true,
+        "aug": true,
+        "sep": true,
+        "oct": true,
+        "nov": true,
+        "dec": true,
+        "day1": 0,
+        "month1": 0,
+        "day2": 0,
+        "month2": 0,
+        "day3": 0,
+        "month3": 0,
+        "day4": 0,
+        "month4": 0,
+        "day5": 0,
+        "month5": 0,
+        "day6": 0,
+        "month6": 0,
+        "day7": 0,
+        "month7": 0,
+        "day8": 0,
+        "month8": 0,
+        "day9": 0,
+        "month9": 0,
+        "day10": 0,
+        "month10": 0,
+        "day11": 0,
+        "month11": 0,
+        "day12": 0,
+        "month12": 0,
+        "d1": 0,
+        "w1": 0,
+        "d2": 0,
+        "w2": 0,
+        "d3": 0,
+        "w3": 0,
+        "d4": 0,
+        "w4": 0,
+        "d5": 0,
+        "w5": 0,
+        "d6": 0,
+        "w6": 0,
+        "xday1": "3",
+        "xmonth1": "7",
+        "xday2": 0,
+        "xmonth2": 0,
+        "xday3": 0,
+        "xmonth3": 0,
+        "xday4": 0,
+        "xmonth4": 0,
+        "xday5": 0,
+        "xmonth5": 0,
+        "xday6": 0,
+        "xmonth6": 0,
+        "xd1": 0,
+        "xw1": 0,
+        "xd2": 0,
+        "xw2": 0,
+        "xd3": 0,
+        "xw3": 0,
+        "xd4": 0,
+        "xw4": 0,
+        "xd5": 0,
+        "xw5": 0,
+        "xd6": 0,
+        "xw6": 0,
+        "suspend": false,
+        "random": false,
+        "randon1": false,
+        "randoff1": false,
+        "randon2": false,
+        "randoff2": false,
+        "repeat": true,
+        "atstart": true,
+        "odd": false,
+        "even": false,
+        "x": 200,
+        "y": 100,
+        "wires": [
+            [
+                "6990ead8.9fe394"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f1547d0a.1b602",
+        "type": "bigtimer",
+        "z": "d149ef89.67e71",
+        "outtopic": "",
+        "outpayload1": "on",
+        "outpayload2": "off",
+        "name": "Jen Office Hours",
+        "comment": "",
+        "lat": "42.64036",
+        "lon": "-83.13634",
+        "starttime": "480",
+        "endtime": "1080",
+        "starttime2": 0,
+        "endtime2": 0,
+        "startoff": 0,
+        "endoff": 0,
+        "startoff2": 0,
+        "endoff2": 0,
+        "offs": 0,
+        "outtext1": "on",
+        "outtext2": "off",
+        "timeout": 1440,
+        "sun": false,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": false,
+        "jan": true,
+        "feb": true,
+        "mar": true,
+        "apr": true,
+        "may": true,
+        "jun": true,
+        "jul": true,
+        "aug": true,
+        "sep": true,
+        "oct": true,
+        "nov": true,
+        "dec": true,
+        "day1": 0,
+        "month1": 0,
+        "day2": 0,
+        "month2": 0,
+        "day3": 0,
+        "month3": 0,
+        "day4": 0,
+        "month4": 0,
+        "day5": 0,
+        "month5": 0,
+        "day6": 0,
+        "month6": 0,
+        "day7": 0,
+        "month7": 0,
+        "day8": 0,
+        "month8": 0,
+        "day9": 0,
+        "month9": 0,
+        "day10": 0,
+        "month10": 0,
+        "day11": 0,
+        "month11": 0,
+        "day12": 0,
+        "month12": 0,
+        "d1": 0,
+        "w1": 0,
+        "d2": 0,
+        "w2": 0,
+        "d3": 0,
+        "w3": 0,
+        "d4": 0,
+        "w4": 0,
+        "d5": 0,
+        "w5": 0,
+        "d6": 0,
+        "w6": 0,
+        "xday1": 0,
+        "xmonth1": 0,
+        "xday2": 0,
+        "xmonth2": 0,
+        "xday3": 0,
+        "xmonth3": 0,
+        "xday4": 0,
+        "xmonth4": 0,
+        "xday5": 0,
+        "xmonth5": 0,
+        "xday6": 0,
+        "xmonth6": 0,
+        "xd1": 0,
+        "xw1": 0,
+        "xd2": 0,
+        "xw2": 0,
+        "xd3": 0,
+        "xw3": 0,
+        "xd4": 0,
+        "xw4": 0,
+        "xd5": 0,
+        "xw5": 0,
+        "xd6": 0,
+        "xw6": 0,
+        "suspend": false,
+        "random": false,
+        "randon1": false,
+        "randoff1": false,
+        "randon2": false,
+        "randoff2": false,
+        "repeat": true,
+        "atstart": true,
+        "odd": false,
+        "even": false,
+        "x": 210,
+        "y": 300,
+        "wires": [
+            [
+                "f0090121.d9e2c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6990ead8.9fe394",
+        "type": "api-current-state",
+        "z": "d149ef89.67e71",
+        "name": "CJ home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "person.cj",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "d3930bec.aab638"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f0090121.d9e2c",
+        "type": "api-current-state",
+        "z": "d149ef89.67e71",
+        "name": "Jen home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "person.jen",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "f3e91f21.d08da"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d3930bec.aab638",
+        "type": "api-current-state",
+        "z": "d149ef89.67e71",
+        "name": "CJ WFH",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cj_wfh",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 660,
+        "y": 80,
+        "wires": [
+            [
+                "146dd9c5.10ea1e"
+            ]
+        ]
+    },
+    {
+        "id": "f3e91f21.d08da",
+        "type": "api-current-state",
+        "z": "d149ef89.67e71",
+        "name": "Jen WFH",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.jen_wfh",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 660,
+        "y": 280,
+        "wires": [
+            [
+                "db2a6ef.113c21"
+            ]
+        ]
+    },
+    {
+        "id": "6a49e7c3.282478",
+        "type": "subflow:d3a6c9b0.41f988",
+        "z": "d149ef89.67e71",
+        "name": "",
+        "env": [],
+        "x": 1050,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "146dd9c5.10ea1e",
+        "type": "switch",
+        "z": "d149ef89.67e71",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 80,
+        "wires": [
+            [
+                "6a49e7c3.282478"
+            ],
+            [
+                "70f4ff5d.13b578",
+                "e94cc901.e631d"
+            ]
+        ]
+    },
+    {
+        "id": "db2a6ef.113c21",
+        "type": "switch",
+        "z": "d149ef89.67e71",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 280,
+        "wires": [
+            [
+                "6a49e7c3.282478",
+                "947f9b06.100ed",
+                "384efad5.6d1ec6",
+                "26007b3c.4103a4",
+                "91e82f3c.62319"
+            ],
+            [
+                "73626a2f.b1d0cc",
+                "7e76ac81.e47b6c",
+                "b564f0c0.ff19f",
+                "56c3a793.495128"
+            ]
+        ]
+    },
+    {
+        "id": "70f4ff5d.13b578",
+        "type": "function",
+        "z": "d149ef89.67e71",
+        "name": "Set Brightness 75%",
+        "func": "newmsg = {}\nvar brightness = flow.get(\"brightness\");\n\nnewmsg.payload = { data: { \"brightness_pct\":75} }\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1030,
+        "y": 60,
+        "wires": [
+            [
+                "2e66c6a6.91d262"
+            ]
+        ]
+    },
+    {
+        "id": "2e66c6a6.91d262",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Turn On Cave Aux",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.cave_aux",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1270,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e94cc901.e631d",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Turn Off Cave Main",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.cave_main",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1270,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ec8fb20d.e9f5d8",
+        "type": "poll-state",
+        "z": "d149ef89.67e71",
+        "name": "CJ Work-Holiday",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "updateinterval": "60",
+        "updateIntervalUnits": "minutes",
+        "outputinitially": false,
+        "outputonchanged": true,
+        "entity_id": "calendar.cj_ramseyer",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 440,
+        "y": 1000,
+        "wires": [
+            [
+                "c62aa1c9.fee42"
+            ]
+        ]
+    },
+    {
+        "id": "c62aa1c9.fee42",
+        "type": "switch",
+        "z": "d149ef89.67e71",
+        "name": "",
+        "property": "data.attributes.message",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Work-Holiday",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 1000,
+        "wires": [
+            [
+                "7481ed3b.e2315c"
+            ]
+        ]
+    },
+    {
+        "id": "6498d275.231aac",
+        "type": "switch",
+        "z": "d149ef89.67e71",
+        "name": "",
+        "property": "data.attributes.message",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Work-Holiday",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 880,
+        "wires": [
+            [
+                "d30bd9f6.72e6c8"
+            ]
+        ]
+    },
+    {
+        "id": "7087df62.47d5f",
+        "type": "poll-state",
+        "z": "d149ef89.67e71",
+        "name": "Jen Work-Holiday",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "updateinterval": "60",
+        "updateIntervalUnits": "minutes",
+        "outputinitially": false,
+        "outputonchanged": true,
+        "entity_id": "calendar.jen_blankenship",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 440,
+        "y": 880,
+        "wires": [
+            [
+                "6498d275.231aac"
+            ]
+        ]
+    },
+    {
+        "id": "d30bd9f6.72e6c8",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Jen Disable WFH",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.jen_wfh",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 870,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7481ed3b.e2315c",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "CJ Disable WFH",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.cj_wfh",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 860,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91e82f3c.62319",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Office - DnD",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.office_do_not_disturb_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1310,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "384efad5.6d1ec6",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Media Room - DnD",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.media_room_do_not_disturb_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1330,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "947f9b06.100ed",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Media Room - Mute",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_mute",
+        "entityId": "",
+        "data": "{\"entity_id\":\"media_player.media_room\",\"is_volume_muted\":true}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1330,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26007b3c.4103a4",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Office - Mute",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_mute",
+        "entityId": "",
+        "data": "{\"entity_id\":\"media_player.office\",\"is_volume_muted\":true}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1310,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "56c3a793.495128",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Office - DnD Off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.office_do_not_disturb_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1320,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7e76ac81.e47b6c",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Media Room - DnD Off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.media_room_do_not_disturb_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1340,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73626a2f.b1d0cc",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Media Room - UnMute",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_mute",
+        "entityId": "",
+        "data": "{\"entity_id\":\"media_player.media_room\",\"is_volume_muted\":false}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1340,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b564f0c0.ff19f",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Office - UnMute",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_mute",
+        "entityId": "",
+        "data": "{\"entity_id\":\"media_player.office\",\"is_volume_muted\":false}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1320,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b656f5e2.bc58c8",
+        "type": "holiday",
+        "z": "d149ef89.67e71",
+        "name": "US Holidays - CJ",
+        "country": "US",
+        "state": "MI",
+        "region": "",
+        "languages": "en",
+        "typePublic": true,
+        "typeBank": true,
+        "typeSchool": true,
+        "typeObservance": true,
+        "typeOptional": true,
+        "weekend": "6,0",
+        "x": 510,
+        "y": 1060,
+        "wires": [
+            [
+                "7481ed3b.e2315c"
+            ],
+            [
+                "cf9cfd53.ae80a"
+            ]
+        ]
+    },
+    {
+        "id": "cb86847.2023178",
+        "type": "holiday",
+        "z": "d149ef89.67e71",
+        "name": "US Holidays - Jen",
+        "country": "US",
+        "state": "MI",
+        "region": "",
+        "languages": "en",
+        "typePublic": true,
+        "typeBank": false,
+        "typeSchool": false,
+        "typeObservance": false,
+        "typeOptional": false,
+        "weekend": "6,0",
+        "x": 490,
+        "y": 820,
+        "wires": [
+            [
+                "d30bd9f6.72e6c8"
+            ],
+            [
+                "df4cee74.b8c22"
+            ]
+        ]
+    },
+    {
+        "id": "7aadb06d.3754a",
+        "type": "inject",
+        "z": "d149ef89.67e71",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 01 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 940,
+        "wires": [
+            [
+                "b656f5e2.bc58c8",
+                "cb86847.2023178"
+            ]
+        ]
+    },
+    {
+        "id": "cf9cfd53.ae80a",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Enable CJ WFH",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.cj_wfh",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 860,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "df4cee74.b8c22",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Enable Jen WFH",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.jen_wfh",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 870,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b115d85a.8d7d28",
+        "type": "server-state-changed",
+        "z": "d149ef89.67e71",
+        "name": "CJ Busy",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.cj_busy",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "b7dcc12e.0ab73"
+            ]
+        ]
+    },
+    {
+        "id": "29b2eb6e.a4bb84",
+        "type": "server-state-changed",
+        "z": "d149ef89.67e71",
+        "name": "Jen Busy",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.jen_busy",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 180,
+        "y": 680,
+        "wires": [
+            [
+                "9bee4dec.02a95"
+            ]
+        ]
+    },
+    {
+        "id": "ffc82766.4e1a88",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Cave lamp Red",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "",
+        "data": "{\"entity_id\":\"light.shellybulb_bc8574\",\"color_name\":\"Red\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 740,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "509a28f3.4fef18",
+        "type": "switch",
+        "z": "d149ef89.67e71",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 500,
+        "wires": [
+            [
+                "dbe1d638.06d0b8"
+            ],
+            [
+                "e8eee039.b925f"
+            ]
+        ]
+    },
+    {
+        "id": "a1753f12.5b3f6",
+        "type": "switch",
+        "z": "d149ef89.67e71",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 680,
+        "wires": [
+            [
+                "ffc82766.4e1a88"
+            ],
+            [
+                "8b7ea4a1.046c58"
+            ]
+        ]
+    },
+    {
+        "id": "8b7ea4a1.046c58",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Cave lamp White",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "",
+        "data": "{\"entity_id\":\"light.shellybulb_bc8574\",\"color_name\":\"White\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 750,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbe1d638.06d0b8",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Office lamp Red",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "",
+        "data": "{\"entity_id\":\"light.shellybulb_bc85f4\",\"color_name\":\"Red\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 740,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e8eee039.b925f",
+        "type": "api-call-service",
+        "z": "d149ef89.67e71",
+        "name": "Office lamp White",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "",
+        "data": "{\"entity_id\":\"light.shellybulb_bc85f4\",\"color_name\":\"White\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 750,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7dcc12e.0ab73",
+        "type": "api-current-state",
+        "z": "d149ef89.67e71",
+        "name": "If light is on",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.shellybulb_bc85f4",
+        "state_type": "str",
+        "state_location": "state",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 370,
+        "y": 500,
+        "wires": [
+            [
+                "509a28f3.4fef18"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9bee4dec.02a95",
+        "type": "api-current-state",
+        "z": "d149ef89.67e71",
+        "name": "If light is on",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.shellybulb_bc8574",
+        "state_type": "str",
+        "state_location": "state",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 370,
+        "y": 680,
+        "wires": [
+            [
+                "a1753f12.5b3f6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]

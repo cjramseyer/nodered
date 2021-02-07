@@ -1,0 +1,678 @@
+[
+    {
+        "id": "6de607f3.8ca218",
+        "type": "tab",
+        "label": "NFC",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9586eca0.e36a4",
+        "type": "server-events",
+        "z": "6de607f3.8ca218",
+        "name": "NFC Tag scanned",
+        "server": "543e2171.45071",
+        "event_type": "tag_scanned",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "waitForRunning": true,
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "5e05abb1.92ee24"
+            ]
+        ]
+    },
+    {
+        "id": "5e05abb1.92ee24",
+        "type": "switch",
+        "z": "6de607f3.8ca218",
+        "name": "Tag switch",
+        "property": "payload.event.tag_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "d02c1097-d5c9-4188-84fd-20872f523047",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "470443ff-8bc4-49b9-9f8a-86e3072dd64e",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 60,
+        "wires": [
+            [
+                "7a12a763.a8f898"
+            ],
+            [
+                "ce6147d5.1e50d8"
+            ]
+        ]
+    },
+    {
+        "id": "7a12a763.a8f898",
+        "type": "change",
+        "z": "6de607f3.8ca218",
+        "name": "Cave Tag",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Cave_tag",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 60,
+        "wires": [
+            [
+                "5aecca4c.4436c4"
+            ]
+        ]
+    },
+    {
+        "id": "ce6147d5.1e50d8",
+        "type": "change",
+        "z": "6de607f3.8ca218",
+        "name": "Office Tag",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Office_tag",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 440,
+        "wires": [
+            [
+                "60d1609b.4a71a"
+            ]
+        ]
+    },
+    {
+        "id": "e9a4aeb5.6f7e2",
+        "type": "api-call-service",
+        "z": "6de607f3.8ca218",
+        "name": "Turn On Cave Main",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.cave_main",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1650,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d268414.395c48",
+        "type": "api-call-service",
+        "z": "6de607f3.8ca218",
+        "name": "Turn On Cave Aux",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.cave_aux",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1930,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c6e6072.8c73",
+        "type": "function",
+        "z": "6de607f3.8ca218",
+        "name": "Set Brightness",
+        "func": "newmsg = {}\nvar brightness = flow.get(\"brightness\");\n\nnewmsg.payload = { data: { \"brightness_pct\":80}\n}\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1640,
+        "y": 140,
+        "wires": [
+            [
+                "9d268414.395c48"
+            ]
+        ]
+    },
+    {
+        "id": "fa1d0456.b0f3f8",
+        "type": "function",
+        "z": "6de607f3.8ca218",
+        "name": "Set Brightness 100%",
+        "func": "newmsg = {}\nvar brightness = flow.get(\"brightness\");\n\nnewmsg.payload = { data: { \"brightness_pct\":100} }\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1660,
+        "y": 100,
+        "wires": [
+            [
+                "9d268414.395c48"
+            ]
+        ]
+    },
+    {
+        "id": "a133abe.ce91558",
+        "type": "change",
+        "z": "6de607f3.8ca218",
+        "name": "Reset counter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1740,
+        "y": 260,
+        "wires": [
+            [
+                "5aecca4c.4436c4"
+            ]
+        ]
+    },
+    {
+        "id": "75305eb8.1ba39",
+        "type": "switch",
+        "z": "6de607f3.8ca218",
+        "name": "Scan count",
+        "property": "count",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 910,
+        "y": 200,
+        "wires": [
+            [
+                "389937.f101c6ca",
+                "f49aae3.6cff35",
+                "42950cef.a9f6a4"
+            ],
+            [
+                "8d0f2346.1a316",
+                "dc8e6016.ff373",
+                "83d1d1a2.d2e89"
+            ]
+        ]
+    },
+    {
+        "id": "5aecca4c.4436c4",
+        "type": "counter",
+        "z": "6de607f3.8ca218",
+        "name": "",
+        "init": "0",
+        "step": "1",
+        "lower": "0",
+        "upper": "2",
+        "mode": "increment",
+        "outputs": 1,
+        "x": 740,
+        "y": 200,
+        "wires": [
+            [
+                "75305eb8.1ba39"
+            ]
+        ]
+    },
+    {
+        "id": "8d0f2346.1a316",
+        "type": "api-call-service",
+        "z": "6de607f3.8ca218",
+        "name": "Turn Off Cave Main",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.cave_main",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1470,
+        "y": 180,
+        "wires": [
+            [
+                "a133abe.ce91558"
+            ]
+        ]
+    },
+    {
+        "id": "dc8e6016.ff373",
+        "type": "api-call-service",
+        "z": "6de607f3.8ca218",
+        "name": "Turn Off Cave Aux",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.cave_aux",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1470,
+        "y": 240,
+        "wires": [
+            [
+                "a133abe.ce91558"
+            ]
+        ]
+    },
+    {
+        "id": "60d1609b.4a71a",
+        "type": "counter",
+        "z": "6de607f3.8ca218",
+        "name": "",
+        "init": "0",
+        "step": "1",
+        "lower": "0",
+        "upper": "2",
+        "mode": "increment",
+        "outputs": 1,
+        "x": 740,
+        "y": 500,
+        "wires": [
+            [
+                "e680a763.5447f8"
+            ]
+        ]
+    },
+    {
+        "id": "e680a763.5447f8",
+        "type": "switch",
+        "z": "6de607f3.8ca218",
+        "name": "Scan count",
+        "property": "count",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 910,
+        "y": 500,
+        "wires": [
+            [
+                "856ec512.da8f78"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7290afea.0fc55",
+        "type": "change",
+        "z": "6de607f3.8ca218",
+        "name": "Reset counter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1740,
+        "y": 600,
+        "wires": [
+            [
+                "60d1609b.4a71a"
+            ]
+        ]
+    },
+    {
+        "id": "e29276f6.cdeb38",
+        "type": "api-current-state",
+        "z": "6de607f3.8ca218",
+        "name": "WFH Enabled?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cj_wfh",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1420,
+        "y": 100,
+        "wires": [
+            [
+                "fa1d0456.b0f3f8"
+            ],
+            [
+                "4c6e6072.8c73"
+            ]
+        ]
+    },
+    {
+        "id": "856ec512.da8f78",
+        "type": "api-current-state",
+        "z": "6de607f3.8ca218",
+        "name": "WFH Enabled?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.jen_wfh",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1460,
+        "y": 460,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "389937.f101c6ca",
+        "type": "api-current-state",
+        "z": "6de607f3.8ca218",
+        "name": "Cave Aux is off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.cave_aux",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1180,
+        "y": 100,
+        "wires": [
+            [
+                "e29276f6.cdeb38"
+            ],
+            [
+                "dc8e6016.ff373"
+            ]
+        ]
+    },
+    {
+        "id": "f49aae3.6cff35",
+        "type": "api-current-state",
+        "z": "6de607f3.8ca218",
+        "name": "Cave Main is off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.cave_main",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1180,
+        "y": 40,
+        "wires": [
+            [
+                "80272be1.280fe8"
+            ],
+            [
+                "8d0f2346.1a316"
+            ]
+        ]
+    },
+    {
+        "id": "80272be1.280fe8",
+        "type": "api-current-state",
+        "z": "6de607f3.8ca218",
+        "name": "WFH Enabled?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cj_wfh",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1420,
+        "y": 40,
+        "wires": [
+            [
+                "e9a4aeb5.6f7e2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c88da5d0.418548",
+        "type": "api-call-service",
+        "z": "6de607f3.8ca218",
+        "name": "Turn On Cave Lamp 1",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.shellybulb_bc8574",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1720,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83d1d1a2.d2e89",
+        "type": "api-call-service",
+        "z": "6de607f3.8ca218",
+        "name": "Turn Off Cave Lamp 1",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.shellybulb_bc8574",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1480,
+        "y": 300,
+        "wires": [
+            [
+                "a133abe.ce91558"
+            ]
+        ]
+    },
+    {
+        "id": "42950cef.a9f6a4",
+        "type": "api-current-state",
+        "z": "6de607f3.8ca218",
+        "name": "Cave Lamp 1 is off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.shellybulb_bc8574",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1170,
+        "y": 160,
+        "wires": [
+            [
+                "a5840221.c806"
+            ],
+            [
+                "83d1d1a2.d2e89"
+            ]
+        ]
+    },
+    {
+        "id": "a5840221.c806",
+        "type": "api-current-state",
+        "z": "6de607f3.8ca218",
+        "name": "WFH Enabled?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cj_wfh",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1460,
+        "y": 360,
+        "wires": [
+            [
+                "c88da5d0.418548"
+            ],
+            [
+                "c88da5d0.418548"
+            ]
+        ]
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]

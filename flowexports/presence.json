@@ -1,0 +1,1794 @@
+[
+    {
+        "id": "d3a6c9b0.41f988",
+        "type": "subflow",
+        "name": "Set Comfort Temp",
+        "info": "",
+        "category": "climate",
+        "in": [
+            {
+                "x": 40,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "770e72c.29fd18c"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "color": "#3FADB5"
+    },
+    {
+        "id": "770e72c.29fd18c",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "HVAC Mode",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "climate.hallway_thermostat",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "d3e03953.e8b538"
+            ]
+        ]
+    },
+    {
+        "id": "d3e03953.e8b538",
+        "type": "switch",
+        "z": "d3a6c9b0.41f988",
+        "name": "heat/cool",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "heat",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "cool",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "auto",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "1b30cfa0.25c66"
+            ],
+            [
+                "bfedd2ee.ba92c"
+            ],
+            [
+                "1b30cfa0.25c66",
+                "bfedd2ee.ba92c"
+            ]
+        ]
+    },
+    {
+        "id": "1b30cfa0.25c66",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "Get Heat Comfort Temp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_number.heat_comfort_temp",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 590,
+        "y": 60,
+        "wires": [
+            [
+                "85c2486.b2473b8"
+            ]
+        ]
+    },
+    {
+        "id": "bfedd2ee.ba92c",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "Get Cool Comfort Temp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_number.heat_comfort_temp",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "f56c82a3.6e2ea"
+            ]
+        ]
+    },
+    {
+        "id": "f56c82a3.6e2ea",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "Current setpoint > Comfort Temp (Cool)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "payload",
+        "halt_if_type": "msg",
+        "halt_if_compare": "gt",
+        "override_topic": false,
+        "entity_id": "climate.hallway_thermostat",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 900,
+        "y": 140,
+        "wires": [
+            [
+                "6c542f23.5d9b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "85c2486.b2473b8",
+        "type": "api-current-state",
+        "z": "d3a6c9b0.41f988",
+        "name": "Current setpoint < Comfort Temp (Heat)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "payload",
+        "halt_if_type": "msg",
+        "halt_if_compare": "lt",
+        "override_topic": false,
+        "entity_id": "climate.hallway_thermostat",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 900,
+        "y": 60,
+        "wires": [
+            [
+                "6c542f23.5d9b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6c542f23.5d9b",
+        "type": "api-call-service",
+        "z": "d3a6c9b0.41f988",
+        "name": "Set comfort temp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_temperature",
+        "entityId": "",
+        "data": "{\"entity_id\":\"climate.hallway_thermostat\",\"temperature\":\"{{payload}}\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1210,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a64306a.6fec98",
+        "type": "tab",
+        "label": "Presence",
+        "disabled": false,
+        "info": "This flow tracks if anybody is home and marks the house occupied or away."
+    },
+    {
+        "id": "830a64ce.10cec",
+        "type": "server-state-changed",
+        "z": "5a64306a.6fec98",
+        "name": "Jen Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.jenhome",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 800,
+        "y": 40,
+        "wires": [
+            [
+                "f91db820.964808"
+            ]
+        ]
+    },
+    {
+        "id": "e4a27db.5c01d",
+        "type": "server-state-changed",
+        "z": "5a64306a.6fec98",
+        "name": "CJ Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.cjhome",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 801.5,
+        "y": 99,
+        "wires": [
+            [
+                "f91db820.964808"
+            ]
+        ]
+    },
+    {
+        "id": "36807d52.25b5e2",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Away",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.occupied",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1470,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "453c4ca8.cc1ba4",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "CJ Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.cjhome",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "514f7f23.60043",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "CJ Away",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.cjhome",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6f0bfe60.f83b7",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Jen Away",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.jenhome",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac1c1d9c.e049e",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.occupied",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1470,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a79b8ad.dfee7",
+        "type": "server-state-changed",
+        "z": "5a64306a.6fec98",
+        "name": "Guests Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.houseguests",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 795.5,
+        "y": 252,
+        "wires": [
+            [
+                "f91db820.964808"
+            ]
+        ]
+    },
+    {
+        "id": "b8eed97b.8a2b8",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Tori Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.torihome",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79c7a2cb.245ca4",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Tori Away",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.torihome",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3dd8630.0ed3e",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Seb Away",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.sebhome",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2187585a.4b6b9",
+        "type": "server-state-changed",
+        "z": "5a64306a.6fec98",
+        "name": "Tori Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.torihome",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 804.5,
+        "y": 155,
+        "wires": [
+            [
+                "f91db820.964808"
+            ]
+        ]
+    },
+    {
+        "id": "552dafb1.b0a2e8",
+        "type": "server-state-changed",
+        "z": "5a64306a.6fec98",
+        "name": "Seb Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.sebhome",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 804.5,
+        "y": 202,
+        "wires": [
+            [
+                "f91db820.964808"
+            ]
+        ]
+    },
+    {
+        "id": "f91db820.964808",
+        "type": "switch",
+        "z": "5a64306a.6fec98",
+        "name": "Home/Away",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1030,
+        "y": 140,
+        "wires": [
+            [
+                "ac1c1d9c.e049e"
+            ],
+            [
+                "44d3b4d4.cd853c"
+            ]
+        ]
+    },
+    {
+        "id": "7e904f42.f3672",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Turn off Eco",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_preset_mode",
+        "entityId": "",
+        "data": "{\"entity_id\":\"climate.hallway_thermostat\",\"preset_mode\":\"none\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 690,
+        "y": 900,
+        "wires": [
+            [
+                "fd426b59.fd53f8"
+            ]
+        ]
+    },
+    {
+        "id": "9a1785b.df57278",
+        "type": "api-current-state",
+        "z": "5a64306a.6fec98",
+        "name": "Vacation mode off?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.vacation",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 130,
+        "y": 920,
+        "wires": [
+            [
+                "baea4597.c99218",
+                "6ed962fc.e22644"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d3d4cb52.fe5a28",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Set Eco",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_preset_mode",
+        "entityId": "",
+        "data": "{\"entity_id\":\"climate.hallway_thermostat\",\"preset_mode\":\"eco\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a648ca93.7e5aa8",
+        "type": "server-state-changed",
+        "z": "5a64306a.6fec98",
+        "name": "Anybody Home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.occupied",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 680,
+        "y": 820,
+        "wires": [
+            [
+                "d3d4cb52.fe5a28",
+                "610a9737.12c898",
+                "dd73bb34.3e3eb",
+                "ba61ccf.94722b"
+            ],
+            [
+                "7e904f42.f3672"
+            ]
+        ]
+    },
+    {
+        "id": "633aa83d.1c4498",
+        "type": "switch",
+        "z": "5a64306a.6fec98",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ON",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 90,
+        "y": 880,
+        "wires": [
+            [
+                "9a1785b.df57278"
+            ]
+        ]
+    },
+    {
+        "id": "5e7dad82.53d834",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Seb Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.sebhome",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3111dd3.9880d",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Jen Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.jenhome",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8dfe236.7570ae",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Turn on entry light",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.shelly1_55e7ad",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1310,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89da455e.012b18",
+        "type": "time-range-switch",
+        "z": "5a64306a.6fec98",
+        "name": "Dark Hours?",
+        "lat": "42.64036",
+        "lon": "-83.13634",
+        "startTime": "sunsetStart",
+        "endTime": "dawn",
+        "startOffset": "-10",
+        "endOffset": 0,
+        "x": 1090,
+        "y": 440,
+        "wires": [
+            [
+                "8dfe236.7570ae",
+                "90f168bc.244448"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bb7071b.56a639",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Turn off entry light",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.shelly1_55e7ad",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1730,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "647aefa7.4eeb2",
+        "type": "api-current-state",
+        "z": "5a64306a.6fec98",
+        "name": "Side Entry still ON?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "switch.shelly1_55e7ad",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1490,
+        "y": 440,
+        "wires": [
+            [
+                "bb7071b.56a639"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6cbeb5f7.b04084",
+        "type": "bigtimer",
+        "z": "5a64306a.6fec98",
+        "outtopic": "",
+        "outpayload1": "ON",
+        "outpayload2": "OFF",
+        "name": "EOD Pre-stage",
+        "comment": "",
+        "lat": "42.64036",
+        "lon": "-83.13634",
+        "starttime": "930",
+        "endtime": "1080",
+        "starttime2": 0,
+        "endtime2": 0,
+        "startoff": 0,
+        "endoff": 0,
+        "startoff2": 0,
+        "endoff2": 0,
+        "offs": 0,
+        "outtext1": "ON",
+        "outtext2": "OFF",
+        "timeout": 1440,
+        "sun": false,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": false,
+        "jan": true,
+        "feb": true,
+        "mar": true,
+        "apr": true,
+        "may": true,
+        "jun": true,
+        "jul": true,
+        "aug": true,
+        "sep": true,
+        "oct": true,
+        "nov": true,
+        "dec": true,
+        "day1": 0,
+        "month1": 0,
+        "day2": 0,
+        "month2": 0,
+        "day3": 0,
+        "month3": 0,
+        "day4": 0,
+        "month4": 0,
+        "day5": 0,
+        "month5": 0,
+        "day6": 0,
+        "month6": 0,
+        "day7": 0,
+        "month7": 0,
+        "day8": 0,
+        "month8": 0,
+        "day9": 0,
+        "month9": 0,
+        "day10": 0,
+        "month10": 0,
+        "day11": 0,
+        "month11": 0,
+        "day12": 0,
+        "month12": 0,
+        "d1": 0,
+        "w1": 0,
+        "d2": 0,
+        "w2": 0,
+        "d3": 0,
+        "w3": 0,
+        "d4": 0,
+        "w4": 0,
+        "d5": 0,
+        "w5": 0,
+        "d6": 0,
+        "w6": 0,
+        "xday1": 0,
+        "xmonth1": 0,
+        "xday2": 0,
+        "xmonth2": 0,
+        "xday3": 0,
+        "xmonth3": 0,
+        "xday4": 0,
+        "xmonth4": 0,
+        "xday5": 0,
+        "xmonth5": 0,
+        "xday6": 0,
+        "xmonth6": 0,
+        "xd1": 0,
+        "xw1": 0,
+        "xd2": 0,
+        "xw2": 0,
+        "xd3": 0,
+        "xw3": 0,
+        "xd4": 0,
+        "xw4": 0,
+        "xd5": 0,
+        "xw5": 0,
+        "xd6": 0,
+        "xw6": 0,
+        "suspend": false,
+        "random": false,
+        "randon1": false,
+        "randoff1": false,
+        "randon2": false,
+        "randoff2": false,
+        "repeat": true,
+        "atstart": true,
+        "odd": false,
+        "even": false,
+        "x": 120,
+        "y": 800,
+        "wires": [
+            [
+                "633aa83d.1c4498"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "baea4597.c99218",
+        "type": "api-current-state",
+        "z": "5a64306a.6fec98",
+        "name": "CJ WFH?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cj_wfh",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 420,
+        "y": 880,
+        "wires": [
+            [],
+            [
+                "fd426b59.fd53f8"
+            ]
+        ]
+    },
+    {
+        "id": "6ed962fc.e22644",
+        "type": "api-current-state",
+        "z": "5a64306a.6fec98",
+        "name": "Jen WFH?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.jen_wfh",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 410,
+        "y": 940,
+        "wires": [
+            [],
+            [
+                "fd426b59.fd53f8"
+            ]
+        ]
+    },
+    {
+        "id": "90f168bc.244448",
+        "type": "stoptimer",
+        "z": "5a64306a.6fec98",
+        "duration": "5",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "5min",
+        "x": 1310,
+        "y": 440,
+        "wires": [
+            [
+                "647aefa7.4eeb2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fd426b59.fd53f8",
+        "type": "subflow:d3a6c9b0.41f988",
+        "z": "5a64306a.6fec98",
+        "name": "",
+        "x": 690,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "e0374319.f2a8d",
+        "type": "server-state-changed",
+        "z": "5a64306a.6fec98",
+        "name": "Single user mode?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.people_home",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "1",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": true,
+        "ignorePrevStateUnavailable": true,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "x": 130,
+        "y": 1060,
+        "wires": [
+            [
+                "e3b89fb3.e24c4"
+            ],
+            [
+                "e5b07c7.aa2998"
+            ]
+        ]
+    },
+    {
+        "id": "e3b89fb3.e24c4",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Enable auto lights off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.auto_lights_off",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e5b07c7.aa2998",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Disable auto lights off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.auto_lights_off",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dd73bb34.3e3eb",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Side entry Off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.shelly1_55e7ad",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1120,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ba61ccf.94722b",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Turn Off Kitchen pendant lights",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "switch.shelly1_c4fdf1",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1170,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "610a9737.12c898",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Turn off Master Bedroom light(s)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.02240033dc4f227acfe6",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1170,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e71be9.1a2304",
+        "type": "poll-state",
+        "z": "5a64306a.6fec98",
+        "name": "CJ",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "updateinterval": "5",
+        "updateIntervalUnits": "minutes",
+        "outputinitially": true,
+        "outputonchanged": false,
+        "entity_id": "person.cj",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 90,
+        "y": 40,
+        "wires": [
+            [
+                "22a05fab.65abe"
+            ]
+        ]
+    },
+    {
+        "id": "bb57bf43.06c25",
+        "type": "poll-state",
+        "z": "5a64306a.6fec98",
+        "name": "Jen",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "updateinterval": "5",
+        "updateIntervalUnits": "minutes",
+        "outputinitially": true,
+        "outputonchanged": false,
+        "entity_id": "person.jen",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "940c2f2a.8282e"
+            ]
+        ]
+    },
+    {
+        "id": "f516f326.3cb3a",
+        "type": "poll-state",
+        "z": "5a64306a.6fec98",
+        "name": "Tori",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "updateinterval": "5",
+        "updateIntervalUnits": "minutes",
+        "outputinitially": true,
+        "outputonchanged": false,
+        "entity_id": "person.tori",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "d5ea4aac.5e90f8"
+            ]
+        ]
+    },
+    {
+        "id": "787bc27.c82273c",
+        "type": "poll-state",
+        "z": "5a64306a.6fec98",
+        "name": "Seb",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "updateinterval": "5",
+        "updateIntervalUnits": "minutes",
+        "outputinitially": true,
+        "outputonchanged": false,
+        "entity_id": "person.seb",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "d4ed22bb.35c8e"
+            ]
+        ]
+    },
+    {
+        "id": "22a05fab.65abe",
+        "type": "switch",
+        "z": "5a64306a.6fec98",
+        "name": "Home/Away",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "home",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "home",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 40,
+        "wires": [
+            [
+                "514f7f23.60043"
+            ],
+            [
+                "453c4ca8.cc1ba4"
+            ]
+        ]
+    },
+    {
+        "id": "d4ed22bb.35c8e",
+        "type": "switch",
+        "z": "5a64306a.6fec98",
+        "name": "Home/Away",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "home",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "home",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "d3dd8630.0ed3e"
+            ],
+            [
+                "5e7dad82.53d834"
+            ]
+        ]
+    },
+    {
+        "id": "d5ea4aac.5e90f8",
+        "type": "switch",
+        "z": "5a64306a.6fec98",
+        "name": "Home/Away",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "home",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "home",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "79c7a2cb.245ca4"
+            ],
+            [
+                "b8eed97b.8a2b8"
+            ]
+        ]
+    },
+    {
+        "id": "940c2f2a.8282e",
+        "type": "switch",
+        "z": "5a64306a.6fec98",
+        "name": "Home/Away",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "home",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "home",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "6f0bfe60.f83b7"
+            ],
+            [
+                "d3111dd3.9880d"
+            ]
+        ]
+    },
+    {
+        "id": "44d3b4d4.cd853c",
+        "type": "api-current-state",
+        "z": "5a64306a.6fec98",
+        "name": "Nobody Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "group.homeaway",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1260,
+        "y": 180,
+        "wires": [
+            [
+                "36807d52.25b5e2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8fa71311.2e22",
+        "type": "ha-zone",
+        "z": "5a64306a.6fec98",
+        "server": "543e2171.45071",
+        "name": "Entering Neighborhood",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entities": [
+            "device_tracker.google_maps_103298389060901230903",
+            "device_tracker.google_maps_104665180205749213751",
+            "device_tracker.google_maps_108388660046996653768",
+            "device_tracker.google_maps_109285548108349468571"
+        ],
+        "event": "enter",
+        "zones": [
+            "zone.neighborhood"
+        ],
+        "x": 820,
+        "y": 460,
+        "wires": [
+            [
+                "89da455e.012b18"
+            ]
+        ]
+    },
+    {
+        "id": "f010a8d0.ab2158",
+        "type": "switch",
+        "z": "5a64306a.6fec98",
+        "name": "Home/Away",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 540,
+        "wires": [
+            [
+                "20e7743d.2e407c"
+            ],
+            [
+                "9e652945.3f8bb8"
+            ]
+        ]
+    },
+    {
+        "id": "20e7743d.2e407c",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Set Guest Home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "device_tracker",
+        "service": "see",
+        "entityId": "",
+        "data": "{\t   \"mac\":\"FF:FF:FF:FF:FF:FF\",\t   \"dev_id\":\"guest\",\t   \"host_name\":\"Guest\",\t   \"location_name\":\"home\"\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 470,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e652945.3f8bb8",
+        "type": "api-call-service",
+        "z": "5a64306a.6fec98",
+        "name": "Set Guest Away",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "device_tracker",
+        "service": "see",
+        "entityId": "",
+        "data": "{\t   \"mac\":\"FF:FF:FF:FF:FF:FF\",\t   \"dev_id\":\"guest\",\t   \"host_name\":\"Guest\",\t   \"location_name\":\"Away\"\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 460,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29de31dd.e36d7e",
+        "type": "server-state-changed",
+        "z": "5a64306a.6fec98",
+        "name": "Guests",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.houseguests",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 90,
+        "y": 540,
+        "wires": [
+            [
+                "f010a8d0.ab2158"
+            ]
+        ]
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]

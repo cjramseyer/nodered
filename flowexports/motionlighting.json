@@ -1,0 +1,345 @@
+[
+    {
+        "id": "3d183616.022e8a",
+        "type": "tab",
+        "label": "Motion Lighting",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d2b46964.bd05c",
+        "type": "server-state-changed",
+        "z": "3d183616.022e8a",
+        "name": "Kitchen Motion",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.multisensor_motion",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "b920dddd.1db4e",
+                "50eb48a3.c6c598"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b920dddd.1db4e",
+        "type": "api-current-state",
+        "z": "3d183616.022e8a",
+        "name": "Motion Enabled?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.kitchen_motion",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 330,
+        "y": 100,
+        "wires": [
+            [
+                "da960409.d6c4b",
+                "7a41b7bb.13778"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ba566423.14c0a8",
+        "type": "api-call-service",
+        "z": "3d183616.022e8a",
+        "name": "Turn Off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.shelly1_c4fdf1",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "da84a359.da616",
+        "type": "api-call-service",
+        "z": "3d183616.022e8a",
+        "name": "Turn on",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.shelly1_c4fdf1",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "da960409.d6c4b",
+        "type": "api-current-state",
+        "z": "3d183616.022e8a",
+        "name": "Lights off?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.shelly1_c4fdf1",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 550,
+        "y": 60,
+        "wires": [
+            [
+                "da84a359.da616"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2577f48.7c0fa0c",
+        "type": "api-render-template",
+        "z": "3d183616.022e8a",
+        "name": "Still in Kitchen?",
+        "server": "543e2171.45071",
+        "template": "{{ states.variable.last_motion.state != 'Kitchen Motion' }}",
+        "resultsLocation": "payload",
+        "resultsLocationType": "msg",
+        "templateLocation": "template",
+        "templateLocationType": "msg",
+        "x": 780,
+        "y": 120,
+        "wires": [
+            [
+                "dadf4f65.4378c8"
+            ]
+        ]
+    },
+    {
+        "id": "7a41b7bb.13778",
+        "type": "stoptimer",
+        "z": "3d183616.022e8a",
+        "duration": "10",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "10min",
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [
+                "2577f48.7c0fa0c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dadf4f65.4378c8",
+        "type": "switch",
+        "z": "3d183616.022e8a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "True",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 950,
+        "y": 120,
+        "wires": [
+            [
+                "ba566423.14c0a8"
+            ]
+        ]
+    },
+    {
+        "id": "1faf6782.fc0a58",
+        "type": "link in",
+        "z": "3d183616.022e8a",
+        "name": "Kitchen light trigger",
+        "links": [
+            "7633c5b5.27c6bc"
+        ],
+        "x": 395,
+        "y": 40,
+        "wires": [
+            [
+                "da960409.d6c4b"
+            ]
+        ]
+    },
+    {
+        "id": "af863f08.b704f",
+        "type": "server-state-changed",
+        "z": "3d183616.022e8a",
+        "name": "Kitchen Switch Flipped On",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly1_c4fdf1",
+        "entityidfiltertype": "substring",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "ef1ffed6.5c02f8"
+            ]
+        ]
+    },
+    {
+        "id": "ef9301ef.d2c7e",
+        "type": "change",
+        "z": "3d183616.022e8a",
+        "name": "STOP Timer",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "STOP",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 180,
+        "wires": [
+            [
+                "7a41b7bb.13778"
+            ]
+        ]
+    },
+    {
+        "id": "ef1ffed6.5c02f8",
+        "type": "api-current-state",
+        "z": "3d183616.022e8a",
+        "name": "Motion Enabled?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.kitchen_motion",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "ef9301ef.d2c7e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "50eb48a3.c6c598",
+        "type": "link out",
+        "z": "3d183616.022e8a",
+        "name": "Trigger Morning",
+        "links": [],
+        "x": 255,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]
