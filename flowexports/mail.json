@@ -1,0 +1,262 @@
+[
+    {
+        "id": "427fc1a4.d814c",
+        "type": "tab",
+        "label": "Mail",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "81c7f12f.ebb9",
+        "type": "api-call-service",
+        "z": "427fc1a4.d814c",
+        "name": "HA Notify",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"title\":\"New Mail\",\"message\":\"Mail has been delivered\"}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 720,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6141a237.4ed6bc",
+        "type": "api-call-service",
+        "z": "427fc1a4.d814c",
+        "name": "Mail notification",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "play_media",
+        "entityId": "media_player.kitchen",
+        "data": "{\t    \"media_content_id\": \"http://10.20.0.21:8123/local/mp3/mails_in.mp3\",\t    \"media_content_type\": music\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 740,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4dfafee0.d9f1b",
+        "type": "api-call-service",
+        "z": "427fc1a4.d814c",
+        "name": "Mail arrived!",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.mail_arrived",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 730,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad6c2b5d.66ce78",
+        "type": "api-call-service",
+        "z": "427fc1a4.d814c",
+        "name": "Set time mail delivered",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_datetime",
+        "service": "set_datetime",
+        "entityId": "",
+        "data": "{\t    \"timestamp\": \"{{ now().timestamp() }}\",\t    \"entity_id\": input_datetime.mailbox_last_triggered\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 760,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2850396.e4cd7",
+        "type": "comment",
+        "z": "427fc1a4.d814c",
+        "name": "Mail (Postal) has been delivered",
+        "info": "",
+        "x": 210,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "33e97ffd.ad50d",
+        "type": "comment",
+        "z": "427fc1a4.d814c",
+        "name": "Mail (Postal) has been retrieved",
+        "info": "",
+        "x": 210,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "28b47482.7bb5ec",
+        "type": "api-call-service",
+        "z": "427fc1a4.d814c",
+        "name": "Mail retrieved",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.mail_arrived",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 740,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e8a9ff79.35abd",
+        "type": "api-call-service",
+        "z": "427fc1a4.d814c",
+        "name": "Clear time mail delivered",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_datetime",
+        "service": "set_datetime",
+        "entityId": "",
+        "data": "{\t    \"timestamp\": \"\",\t    \"entity_id\": input_datetime.mailbox_last_triggered\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 770,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5789e4d5.e4647c",
+        "type": "counter",
+        "z": "427fc1a4.d814c",
+        "name": "",
+        "init": "0",
+        "step": "1",
+        "lower": "0",
+        "upper": "2",
+        "mode": "increment",
+        "outputs": 1,
+        "x": 320,
+        "y": 340,
+        "wires": [
+            [
+                "91408877.fde818"
+            ]
+        ]
+    },
+    {
+        "id": "91408877.fde818",
+        "type": "switch",
+        "z": "427fc1a4.d814c",
+        "name": "Scan count",
+        "property": "count",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "ad6c2b5d.66ce78",
+                "4dfafee0.d9f1b",
+                "6141a237.4ed6bc",
+                "81c7f12f.ebb9"
+            ],
+            [
+                "28b47482.7bb5ec",
+                "e8a9ff79.35abd",
+                "d04e713e.04cc1"
+            ]
+        ]
+    },
+    {
+        "id": "d04e713e.04cc1",
+        "type": "change",
+        "z": "427fc1a4.d814c",
+        "name": "Reset counter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 460,
+        "wires": [
+            [
+                "5789e4d5.e4647c"
+            ]
+        ]
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]

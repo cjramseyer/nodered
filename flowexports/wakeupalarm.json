@@ -1,0 +1,3680 @@
+[
+    {
+        "id": "395a3554.de723a",
+        "type": "tab",
+        "label": "WakeUp Alarm",
+        "disabled": false,
+        "info": "This routine controls wakeup light routines"
+    },
+    {
+        "id": "957c316.65f9a5",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "CJ Home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cjhome",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1190,
+        "y": 100,
+        "wires": [
+            [
+                "171fcb6d.ba8f9d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ca3c001f.c41f5",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Jen Home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.jenhome",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1190,
+        "y": 160,
+        "wires": [
+            [
+                "874ca11e.069208"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "962d5492.3a6e8",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Get Alarm Time",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_datetime.house_wakeup_time",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 620,
+        "y": 140,
+        "wires": [
+            [
+                "4e29220a.bf6de4"
+            ]
+        ]
+    },
+    {
+        "id": "7c8da9be.0de7a",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "",
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "9fa94015.fbbd78"
+            ]
+        ]
+    },
+    {
+        "id": "9fa94015.fbbd78",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "House Alarm On?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.house_alarm_enable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 350,
+        "y": 60,
+        "wires": [
+            [
+                "962d5492.3a6e8",
+                "7088eed.e42f89"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7088eed.e42f89",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Current Time",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "H:mm",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 610,
+        "y": 60,
+        "wires": [
+            [
+                "d46721d3.0e4b78"
+            ]
+        ]
+    },
+    {
+        "id": "4e29220a.bf6de4",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Alarm - Start time",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": "15",
+        "adjType": "minutes",
+        "adjDir": "subtract",
+        "format": "H:mm",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 630,
+        "y": 100,
+        "wires": [
+            [
+                "d46721d3.0e4b78"
+            ]
+        ]
+    },
+    {
+        "id": "d46721d3.0e4b78",
+        "type": "join",
+        "z": "395a3554.de723a",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 810,
+        "y": 80,
+        "wires": [
+            [
+                "999f3401.d3db38"
+            ]
+        ]
+    },
+    {
+        "id": "999f3401.d3db38",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Compare Times",
+        "func": "newmsg = {};\nif (msg.payload[0] == msg.payload[1]) {\n    newmsg.payload = \"True\";\n} else {\n    newmsg.payload = \"False\";\n}\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 60,
+        "wires": [
+            [
+                "ae3f5040.603cb"
+            ]
+        ]
+    },
+    {
+        "id": "ae3f5040.603cb",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is it Time?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "True",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 990,
+        "y": 100,
+        "wires": [
+            [
+                "957c316.65f9a5",
+                "ca3c001f.c41f5"
+            ]
+        ]
+    },
+    {
+        "id": "171fcb6d.ba8f9d",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "CJ - WakeUp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.cj_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1370,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "874ca11e.069208",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Jen - WakeUp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.jen_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1380,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8b47396.a62c448",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "House Alarm Enabled",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.house_alarm_enable",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 120,
+        "y": 300,
+        "wires": [
+            [
+                "335309ad.599326",
+                "36b4cd3.ac76bb2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "335309ad.599326",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn off individual alarm (CJ)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.cj_alarm_enable",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 460,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36b4cd3.ac76bb2",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn off individual alarm (Jen)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.jen_alarm_enable",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 470,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf7a1170.6719e",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "AutoEnable Alarm(s) - Late Night (AM)",
+        "repeat": "",
+        "crontab": "*/1 0-2 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 200,
+        "y": 740,
+        "wires": [
+            [
+                "fe3ca3a3.8b9e5"
+            ]
+        ]
+    },
+    {
+        "id": "90824873.9c3448",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "CJ-AutoEnable (Weekdays)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Weekdays",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.cj_alarm_autoenable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 780,
+        "y": 460,
+        "wires": [
+            [
+                "10904888.d63357"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1edad2e1.a941cd",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "CJ-Alarm-On",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.cj_alarm_enable",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1270,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3fe875be.dd009a",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "CJ-AutoEnable (Weekends)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Weekends",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.cj_alarm_autoenable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 780,
+        "y": 520,
+        "wires": [
+            [
+                "10904888.d63357"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fcfbf1bb.9590f",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Jen-AutoEnable (Weekdays)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Weekdays",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.jen_alarm_autoenable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 780,
+        "y": 640,
+        "wires": [
+            [
+                "4f0fca32.234894"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "144585af.987aaa",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Jen-AutoEnable (Weekends)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Weekends",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.jen_alarm_autoenable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 780,
+        "y": 700,
+        "wires": [
+            [
+                "4f0fca32.234894"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4726855f.e9e39c",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Jen-Alarm-On",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.jen_alarm_enable",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1280,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "10904888.d63357",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "CJ Home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cjhome",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1070,
+        "y": 520,
+        "wires": [
+            [
+                "1edad2e1.a941cd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4f0fca32.234894",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Jen Home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.jenhome",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1070,
+        "y": 700,
+        "wires": [
+            [
+                "4726855f.e9e39c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e999836c.22c28",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "AutoEnable Alarm(s) - Late Night (PM)",
+        "repeat": "",
+        "crontab": "*/1 21-23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "fe3ca3a3.8b9e5"
+            ]
+        ]
+    },
+    {
+        "id": "1ccda375.9aa50d",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "CJ-AutoEnable (Both)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Both",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.cj_alarm_autoenable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 760,
+        "y": 580,
+        "wires": [
+            [
+                "10904888.d63357"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8379d4ec.d7a2d8",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Jen-AutoEnable (Both)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Both",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.jen_alarm_autoenable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 770,
+        "y": 760,
+        "wires": [
+            [
+                "4f0fca32.234894"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "91bfc052.dbfb4",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "General Wake Up",
+        "info": "",
+        "x": 90,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "e96fa676.564968",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "CJ Wake Up",
+        "info": "",
+        "x": 70,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "2641ba55.23d056",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Current Time",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "H:mm",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 710,
+        "y": 960,
+        "wires": [
+            [
+                "ab2a56a1.d1eec8"
+            ]
+        ]
+    },
+    {
+        "id": "18fc5a7b.6fbdb6",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Alarm - Start time",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": "15",
+        "adjType": "minutes",
+        "adjDir": "subtract",
+        "format": "H:mm",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 730,
+        "y": 1000,
+        "wires": [
+            [
+                "ab2a56a1.d1eec8"
+            ]
+        ]
+    },
+    {
+        "id": "e368fdbb.c69c9",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Get Alarm Time",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_datetime.cj_wakeup_time",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 720,
+        "y": 1040,
+        "wires": [
+            [
+                "18fc5a7b.6fbdb6"
+            ]
+        ]
+    },
+    {
+        "id": "ab2a56a1.d1eec8",
+        "type": "join",
+        "z": "395a3554.de723a",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 950,
+        "y": 960,
+        "wires": [
+            [
+                "ae180fcd.06e9a"
+            ]
+        ]
+    },
+    {
+        "id": "ae180fcd.06e9a",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Compare Times",
+        "func": "newmsg = {};\nif (msg.payload[0] == msg.payload[1]) {\n    newmsg.payload = \"True\";\n} else {\n    newmsg.payload = \"False\";\n}\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 980,
+        "y": 1000,
+        "wires": [
+            [
+                "ddb5a1b1.323f3"
+            ]
+        ]
+    },
+    {
+        "id": "ddb5a1b1.323f3",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is it Time?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "True",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 970,
+        "y": 1040,
+        "wires": [
+            [
+                "f5f234c1.6de0c8"
+            ]
+        ]
+    },
+    {
+        "id": "2f028f4c.ddae6",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "TRIGGER WAKE UP",
+        "info": "",
+        "x": 120,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "ba62ae9c.8db5a",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "",
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 960,
+        "wires": [
+            [
+                "2f213975.538336"
+            ]
+        ]
+    },
+    {
+        "id": "2f213975.538336",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Alarm Clock ON?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cj_alarm_enable",
+        "state_type": "str",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 370,
+        "y": 960,
+        "wires": [
+            [
+                "2641ba55.23d056",
+                "e368fdbb.c69c9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f5f234c1.6de0c8",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "CJ - WakeUp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.cj_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1190,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f10a58c.687a2a",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Wake CJ",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.cj_alarm_running",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 80,
+        "y": 1320,
+        "wires": [
+            [
+                "52ac9371.4a41fc",
+                "c2d83bcc.8aa03"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "52ac9371.4a41fc",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is it Time?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 1320,
+        "wires": [
+            [
+                "4650bc18.930784",
+                "a5833a48.212f38"
+            ]
+        ]
+    },
+    {
+        "id": "4650bc18.930784",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Initialize Brightness/Volume",
+        "func": "flow.set(\"brightness\", 1);\nflow.set(\"volume\", 0);\n\nnewmsg = {\"payload\":\"true\"}\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 620,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fcd46bd0.53c948",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 850,
+        "y": 1320,
+        "wires": [
+            [
+                "4650bc18.930784"
+            ]
+        ]
+    },
+    {
+        "id": "7ab44b80.e6ce24",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Snooze Off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.cj_alarm_snooze",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 220,
+        "y": 1460,
+        "wires": [
+            [
+                "a5833a48.212f38"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a5833a48.212f38",
+        "type": "change",
+        "z": "395a3554.de723a",
+        "name": "Start",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "start",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 1460,
+        "wires": [
+            [
+                "e90e3c6c.8935f"
+            ]
+        ]
+    },
+    {
+        "id": "e90e3c6c.8935f",
+        "type": "traffic",
+        "z": "395a3554.de723a",
+        "name": "Brighten the Lights",
+        "property_allow": "payload",
+        "filter_allow": "start",
+        "ignore_case_allow": false,
+        "negate_allow": false,
+        "send_allow": false,
+        "property_stop": "payload",
+        "filter_stop": "snooze",
+        "ignore_case_stop": false,
+        "negate_stop": false,
+        "send_stop": false,
+        "default_start": false,
+        "differ": false,
+        "x": 630,
+        "y": 1520,
+        "wires": [
+            [
+                "dd3b0923.8f17d8"
+            ]
+        ]
+    },
+    {
+        "id": "dd3b0923.8f17d8",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Set Brightness",
+        "func": "newmsg = {}\nvar brightness = flow.get(\"brightness\");\n\nnewmsg.payload = { data: { \"brightness_pct\":brightness} }\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 840,
+        "y": 1520,
+        "wires": [
+            [
+                "f9141d9a.4951d",
+                "6eb73a95.c1c0c4",
+                "146654c4.fe69f3"
+            ]
+        ]
+    },
+    {
+        "id": "f9141d9a.4951d",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn On Wake Light",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.cj_wake_light",
+        "data": "{\"rgb_color\":[255,200,100]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1080,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6eb73a95.c1c0c4",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Increment Brightness",
+        "func": "var brightness = flow.get('brightness')||0;\n\nif (brightness < 100) {\n    brightness = brightness + 1;\n    flow.set(\"brightness\", brightness);\n    \n    newmsg = {\"payload\":\"looping\"}\n    return newmsg;\n}\nelse {\n    newmsg = {\"payload\":\"done\"};\n    return newmsg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1260,
+        "y": 1460,
+        "wires": [
+            [
+                "8fdc3431.6ed5a8"
+            ]
+        ]
+    },
+    {
+        "id": "8fdc3431.6ed5a8",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is Loop Done?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "done",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1340,
+        "y": 1520,
+        "wires": [
+            [
+                "caf0861.4536278"
+            ]
+        ]
+    },
+    {
+        "id": "b35bd0a4.ae015",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Finish Alarm Sequence",
+        "info": "",
+        "x": 1400,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "caf0861.4536278",
+        "type": "link out",
+        "z": "395a3554.de723a",
+        "name": "FINISH ALARM SEQUENCE!",
+        "links": [
+            "850961fe.111c8",
+            "45deb28f.3cb32c",
+            "a40756c.5fa42a8"
+        ],
+        "x": 1275,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "a40756c.5fa42a8",
+        "type": "link in",
+        "z": "395a3554.de723a",
+        "name": "",
+        "links": [
+            "ed590c06.62219",
+            "caf0861.4536278"
+        ],
+        "x": 535,
+        "y": 1580,
+        "wires": [
+            [
+                "cb5c6f9b.9ac75"
+            ]
+        ]
+    },
+    {
+        "id": "cb5c6f9b.9ac75",
+        "type": "change",
+        "z": "395a3554.de723a",
+        "name": "Stop",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "snooze",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 1580,
+        "wires": [
+            [
+                "e90e3c6c.8935f"
+            ]
+        ]
+    },
+    {
+        "id": "5bc78736.5c3368",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Snooze On",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.cj_alarm_snooze",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 220,
+        "y": 1820,
+        "wires": [
+            [
+                "cb5c6f9b.9ac75",
+                "3d7d081f.f9b258",
+                "692101f4.0c21"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "692101f4.0c21",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Reset to Brightness / Volume",
+        "func": "flow.set(\"brightness\", 10);\nflow.set(\"volume\",0.3);\nnewmsg = {\"payload\":\"true\"}\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 1820,
+        "wires": [
+            [
+                "cbbebc41.6387d",
+                "add27570.d45ff"
+            ]
+        ]
+    },
+    {
+        "id": "3d7d081f.f9b258",
+        "type": "delay",
+        "z": "395a3554.de723a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 420,
+        "y": 1940,
+        "wires": [
+            [
+                "c98b873b.e5be58"
+            ]
+        ]
+    },
+    {
+        "id": "c98b873b.e5be58",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Snooze Off (Restart Loop)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.cj_alarm_snooze",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 790,
+        "y": 1940,
+        "wires": [
+            [
+                "22a2edad.858e92"
+            ]
+        ]
+    },
+    {
+        "id": "22a2edad.858e92",
+        "type": "change",
+        "z": "395a3554.de723a",
+        "name": "Delete",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 1940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cbbebc41.6387d",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn Off Wake Light",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.cj_wake_light",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1080,
+        "y": 1820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6f6e5d0d.758254",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "Brightness ---->",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "9",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "brightness",
+        "payloadType": "flow",
+        "x": 190,
+        "y": 1520,
+        "wires": [
+            [
+                "e90e3c6c.8935f"
+            ]
+        ]
+    },
+    {
+        "id": "a9c52c1a.81791",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "CJ Home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.cjhome",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 160,
+        "y": 1060,
+        "wires": [
+            [
+                "a99a4ade.b91718",
+                "dd6d2887.4afd58"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a99a4ade.b91718",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Disable alarm if away",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.cj_alarm_enable",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 380,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3763186f.419a38",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Reset Alarm",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.cj_alarm_running",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 490,
+        "y": 1760,
+        "wires": [
+            [
+                "692101f4.0c21",
+                "22a2edad.858e92",
+                "cb5c6f9b.9ac75",
+                "bff3aa0.01cb858"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dd6d2887.4afd58",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn off Alarm if running",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.cj_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 390,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5f0e1d6a.a1a344",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Jen Wake Up",
+        "info": "",
+        "x": 90,
+        "y": 2220,
+        "wires": []
+    },
+    {
+        "id": "b3677e8b.dd07c",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Current Time",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "H:mm",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 690,
+        "y": 2300,
+        "wires": [
+            [
+                "77cfdd89.940234"
+            ]
+        ]
+    },
+    {
+        "id": "5fb7d0f.f54903",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Alarm - Start time",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": "15",
+        "adjType": "minutes",
+        "adjDir": "subtract",
+        "format": "H:mm",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 710,
+        "y": 2340,
+        "wires": [
+            [
+                "77cfdd89.940234"
+            ]
+        ]
+    },
+    {
+        "id": "b6b11000.a3e08",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Get Alarm Time",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_datetime.jen_wakeup_time",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 700,
+        "y": 2380,
+        "wires": [
+            [
+                "5fb7d0f.f54903"
+            ]
+        ]
+    },
+    {
+        "id": "77cfdd89.940234",
+        "type": "join",
+        "z": "395a3554.de723a",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 930,
+        "y": 2300,
+        "wires": [
+            [
+                "102fbda3.91f152"
+            ]
+        ]
+    },
+    {
+        "id": "102fbda3.91f152",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Compare Times",
+        "func": "newmsg = {};\nif (msg.payload[0] == msg.payload[1]) {\n    newmsg.payload = \"True\";\n} else {\n    newmsg.payload = \"False\";\n}\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 2340,
+        "wires": [
+            [
+                "6054ea10.091eb4"
+            ]
+        ]
+    },
+    {
+        "id": "6054ea10.091eb4",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is it Time?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "True",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 2380,
+        "wires": [
+            [
+                "d4b64c56.a396f"
+            ]
+        ]
+    },
+    {
+        "id": "b556f98a.a5d508",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "TRIGGER WAKE UP",
+        "info": "",
+        "x": 140,
+        "y": 2260,
+        "wires": []
+    },
+    {
+        "id": "1b0cc39d.02689c",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "",
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 2300,
+        "wires": [
+            [
+                "e486d695.d4f078"
+            ]
+        ]
+    },
+    {
+        "id": "e486d695.d4f078",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Alarm Clock ON?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.jen_alarm_enable",
+        "state_type": "str",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 390,
+        "y": 2300,
+        "wires": [
+            [
+                "b3677e8b.dd07c",
+                "b6b11000.a3e08"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d4b64c56.a396f",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Jen - WakeUp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.jen_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1180,
+        "y": 2380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d25b2dc5.05032",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Wake Jen",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.jen_alarm_running",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 100,
+        "y": 2660,
+        "wires": [
+            [
+                "672b7ac4.2504a4",
+                "36200c38.cae45c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "672b7ac4.2504a4",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is it Time?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 2660,
+        "wires": [
+            [
+                "84503c62.bc134",
+                "f97501e.6dd3c"
+            ]
+        ]
+    },
+    {
+        "id": "84503c62.bc134",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Initialize Brightness/Volume",
+        "func": "flow.set(\"brightness\", 1);\nflow.set(\"volume\", 0);\n\nnewmsg = {\"payload\":\"true\"}\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 620,
+        "y": 2660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f86f5636.3052b8",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 870,
+        "y": 2660,
+        "wires": [
+            [
+                "84503c62.bc134"
+            ]
+        ]
+    },
+    {
+        "id": "f946b30a.fa884",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Snooze Off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.jen_alarm_snooze",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 320,
+        "y": 2760,
+        "wires": [
+            [
+                "f97501e.6dd3c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f97501e.6dd3c",
+        "type": "change",
+        "z": "395a3554.de723a",
+        "name": "Start",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "start",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 2760,
+        "wires": [
+            [
+                "27abffa3.cd23b"
+            ]
+        ]
+    },
+    {
+        "id": "27abffa3.cd23b",
+        "type": "traffic",
+        "z": "395a3554.de723a",
+        "name": "Brighten the Lights",
+        "property_allow": "payload",
+        "filter_allow": "start",
+        "ignore_case_allow": false,
+        "negate_allow": false,
+        "send_allow": false,
+        "property_stop": "payload",
+        "filter_stop": "snooze",
+        "ignore_case_stop": false,
+        "negate_stop": false,
+        "send_stop": false,
+        "default_start": false,
+        "differ": false,
+        "x": 740,
+        "y": 2800,
+        "wires": [
+            [
+                "2b763c07.699914"
+            ]
+        ]
+    },
+    {
+        "id": "2b763c07.699914",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Set Brightness",
+        "func": "newmsg = {}\nvar brightness = flow.get(\"brightness\");\n\nnewmsg.payload = { data: { \"brightness_pct\":brightness} }\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 940,
+        "y": 2800,
+        "wires": [
+            [
+                "1f321228.c07dae",
+                "a366672e.a13fe8",
+                "1c5e067a.308caa"
+            ]
+        ]
+    },
+    {
+        "id": "1f321228.c07dae",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn On Wake Light",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.jen_wake_light",
+        "data": "{\"rgb_color\":[255,200,100]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1180,
+        "y": 2840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a366672e.a13fe8",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Increment Brightness",
+        "func": "var brightness = flow.get('brightness')||0;\n\nif (brightness < 100) {\n    brightness = brightness + 1;\n    flow.set(\"brightness\", brightness);\n    \n    newmsg = {\"payload\":\"looping\"}\n    return newmsg;\n}\nelse {\n    newmsg = {\"payload\":\"done\"};\n    return newmsg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1480,
+        "y": 2800,
+        "wires": [
+            [
+                "4755a1f6.bbc05"
+            ]
+        ]
+    },
+    {
+        "id": "4755a1f6.bbc05",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is Loop Done?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "done",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1460,
+        "y": 2840,
+        "wires": [
+            [
+                "b65e1701.a22358"
+            ]
+        ]
+    },
+    {
+        "id": "71a7ed2b.b70c04",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Finish Alarm Sequence",
+        "info": "",
+        "x": 1500,
+        "y": 2880,
+        "wires": []
+    },
+    {
+        "id": "b65e1701.a22358",
+        "type": "link out",
+        "z": "395a3554.de723a",
+        "name": "FINISH ALARM SEQUENCE!",
+        "links": [
+            "850961fe.111c8",
+            "45deb28f.3cb32c",
+            "8e387c93.f5925"
+        ],
+        "x": 1395,
+        "y": 2880,
+        "wires": []
+    },
+    {
+        "id": "8e387c93.f5925",
+        "type": "link in",
+        "z": "395a3554.de723a",
+        "name": "",
+        "links": [
+            "ed590c06.62219",
+            "b65e1701.a22358"
+        ],
+        "x": 355,
+        "y": 2840,
+        "wires": [
+            [
+                "95777d5a.8c9e3"
+            ]
+        ]
+    },
+    {
+        "id": "95777d5a.8c9e3",
+        "type": "change",
+        "z": "395a3554.de723a",
+        "name": "Stop",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "snooze",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 2840,
+        "wires": [
+            [
+                "27abffa3.cd23b"
+            ]
+        ]
+    },
+    {
+        "id": "5c669e8e.f6bee",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Snooze On",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.jen_alarm_snooze",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 320,
+        "y": 2920,
+        "wires": [
+            [
+                "95777d5a.8c9e3",
+                "fff59e6d.c83ca",
+                "87d2ec48.fba7c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fff59e6d.c83ca",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Reset to Brightness / Volume",
+        "func": "flow.set(\"brightness\", 10);\nflow.set(\"volume\",0.3);\nnewmsg = {\"payload\":\"true\"}\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 2920,
+        "wires": [
+            [
+                "4d2ec28.70ae23c"
+            ]
+        ]
+    },
+    {
+        "id": "87d2ec48.fba7c",
+        "type": "delay",
+        "z": "395a3554.de723a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 520,
+        "y": 3020,
+        "wires": [
+            [
+                "69ab7223.aeccec"
+            ]
+        ]
+    },
+    {
+        "id": "69ab7223.aeccec",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Snooze Off (Restart Loop)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "homeassistant",
+        "service": "turn_off",
+        "entityId": "input_boolean.jen_alarm_snooze",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 730,
+        "y": 3020,
+        "wires": [
+            [
+                "7ec35521.f6b57c"
+            ]
+        ]
+    },
+    {
+        "id": "7ec35521.f6b57c",
+        "type": "change",
+        "z": "395a3554.de723a",
+        "name": "Delete",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 970,
+        "y": 2960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4d2ec28.70ae23c",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn Off Wake Light",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.jen_wake_light",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1180,
+        "y": 2920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "30326695.1792ca",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "Brightness ---->",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "9",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "brightness",
+        "payloadType": "flow",
+        "x": 150,
+        "y": 2800,
+        "wires": [
+            [
+                "27abffa3.cd23b"
+            ]
+        ]
+    },
+    {
+        "id": "de4f0dd5.80eb2",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Jen Home?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.jenhome",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 2400,
+        "wires": [
+            [
+                "d7455072.99532",
+                "5c6c58c9.bd7a18"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d7455072.99532",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Disable alarm if away",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.jen_alarm_enable",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 400,
+        "y": 2360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "efa5e7cd.6fd7c8",
+        "type": "server-state-changed",
+        "z": "395a3554.de723a",
+        "name": "Reset Alarm",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.jen_alarm_running",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 530,
+        "y": 2960,
+        "wires": [
+            [
+                "95777d5a.8c9e3",
+                "fff59e6d.c83ca",
+                "7ec35521.f6b57c",
+                "71f6b36a.05ddec"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5c6c58c9.bd7a18",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn off Alarm if running",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.jen_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 410,
+        "y": 2420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36200c38.cae45c",
+        "type": "link out",
+        "z": "395a3554.de723a",
+        "name": "Wake Jen",
+        "links": [
+            "69892e67.7411f",
+            "b6e49db9.621c7"
+        ],
+        "x": 235,
+        "y": 2700,
+        "wires": []
+    },
+    {
+        "id": "c2d83bcc.8aa03",
+        "type": "link out",
+        "z": "395a3554.de723a",
+        "name": "Wake CJ",
+        "links": [
+            "69892e67.7411f",
+            "b6e49db9.621c7"
+        ],
+        "x": 195,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "ad819f24.dea61",
+        "type": "poll-state",
+        "z": "395a3554.de723a",
+        "name": "Calendar alarm",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "updateinterval": "60",
+        "updateIntervalUnits": "minutes",
+        "outputinitially": true,
+        "outputonchanged": true,
+        "entity_id": "calendar.cj_ramseyer",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 140,
+        "y": 1160,
+        "wires": [
+            [
+                "9d6983e3.0f0fc",
+                "97fae734.9575d8"
+            ]
+        ]
+    },
+    {
+        "id": "9d6983e3.0f0fc",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "",
+        "property": "data.attributes.message",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Alarm",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 1160,
+        "wires": [
+            [
+                "88ab73ca.03fc5"
+            ]
+        ]
+    },
+    {
+        "id": "c6d4a356.26deb8",
+        "type": "poll-state",
+        "z": "395a3554.de723a",
+        "name": "Calendar Alarm",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "updateinterval": "60",
+        "updateIntervalUnits": "minutes",
+        "outputinitially": true,
+        "outputonchanged": true,
+        "entity_id": "calendar.jen_blankenship",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 120,
+        "y": 2500,
+        "wires": [
+            [
+                "30fbcdcb.9b23d2",
+                "14944f50.979a01"
+            ]
+        ]
+    },
+    {
+        "id": "30fbcdcb.9b23d2",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "",
+        "property": "data.attributes.message",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Alarm",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 350,
+        "y": 2500,
+        "wires": [
+            [
+                "e63cbf68.874398"
+            ]
+        ]
+    },
+    {
+        "id": "d189f15.2473c1",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Initialize variables",
+        "info": "",
+        "x": 590,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "1c51215a.66bb7f",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Alarm sequence - CJ",
+        "info": "",
+        "x": 120,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "89406670.ba776",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Alarm sequence - Jen",
+        "info": "",
+        "x": 120,
+        "y": 2620,
+        "wires": []
+    },
+    {
+        "id": "b22fc385.c8b908",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Set Alarm time to Calendar",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_datetime",
+        "service": "set_datetime",
+        "entityId": "",
+        "data": "{\"entity_id\":\"input_datetime.cj_wakeup_time\",\"time\":\"{{payload}}\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1200,
+        "y": 1260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3bac8735.489b48",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Set Alarm time to Calendar",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_datetime",
+        "service": "set_datetime",
+        "entityId": "input_datetime.jen_wakeup_time",
+        "data": "{\"entity_id\":\"input_datetime.jen_wakeup_time\",\"time\":\"{{payload}}\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1220,
+        "y": 2580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88ab73ca.03fc5",
+        "type": "change",
+        "z": "395a3554.de723a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "data.attributes.start_time",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 1160,
+        "wires": [
+            [
+                "3e77554a.89c46a",
+                "d17ca41e.8e3a18"
+            ]
+        ]
+    },
+    {
+        "id": "e63cbf68.874398",
+        "type": "change",
+        "z": "395a3554.de723a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "data.attributes.start_time",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 2500,
+        "wires": [
+            [
+                "126b2184.51786e",
+                "5c39dd1b.58cf14"
+            ]
+        ]
+    },
+    {
+        "id": "3e77554a.89c46a",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Time format",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "H:mm:ss",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 710,
+        "y": 1200,
+        "wires": [
+            [
+                "e09c7878.1c16a8"
+            ]
+        ]
+    },
+    {
+        "id": "126b2184.51786e",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Time format",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "H:mm:ss",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 690,
+        "y": 2540,
+        "wires": [
+            [
+                "8d692144.c05e4"
+            ]
+        ]
+    },
+    {
+        "id": "d17ca41e.8e3a18",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Date format",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "MM/DD/yyyy",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 710,
+        "y": 1160,
+        "wires": [
+            [
+                "696ab4bc.24d124"
+            ]
+        ]
+    },
+    {
+        "id": "f49ea288.71018",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Compare Dates",
+        "func": "newmsg = {};\nif (msg.payload[0] == msg.payload[1]) {\n    newmsg.payload = \"True\";\n} else {\n    newmsg.payload = \"False\";\n}\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 940,
+        "y": 1160,
+        "wires": [
+            [
+                "e4039846.392bf"
+            ]
+        ]
+    },
+    {
+        "id": "97fae734.9575d8",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Current Date",
+        "topic": "",
+        "input": "",
+        "inputType": "date",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "MM/DD/yyyy",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 710,
+        "y": 1120,
+        "wires": [
+            [
+                "696ab4bc.24d124"
+            ]
+        ]
+    },
+    {
+        "id": "696ab4bc.24d124",
+        "type": "join",
+        "z": "395a3554.de723a",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 910,
+        "y": 1120,
+        "wires": [
+            [
+                "f49ea288.71018"
+            ]
+        ]
+    },
+    {
+        "id": "e4039846.392bf",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is it the right date?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "True",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 1200,
+        "wires": [
+            [
+                "c035e668.a3f418"
+            ]
+        ]
+    },
+    {
+        "id": "e09c7878.1c16a8",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Set by Calendar",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.set_by_calendar",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 940,
+        "y": 1240,
+        "wires": [
+            [
+                "b22fc385.c8b908"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c035e668.a3f418",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Enable set by calendar",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.set_by_calendar",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1180,
+        "y": 1200,
+        "wires": [
+            [
+                "cc378961.cf935"
+            ]
+        ]
+    },
+    {
+        "id": "cc378961.cf935",
+        "type": "delay",
+        "z": "395a3554.de723a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1360,
+        "y": 1200,
+        "wires": [
+            [
+                "4d26e084.58fbe8"
+            ]
+        ]
+    },
+    {
+        "id": "4d26e084.58fbe8",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn off set by calendar",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.set_by_calendar",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1550,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "14944f50.979a01",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Current Date",
+        "topic": "",
+        "input": "",
+        "inputType": "date",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "MM/DD/yyyy",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 690,
+        "y": 2460,
+        "wires": [
+            [
+                "b1479e13.7ef81"
+            ]
+        ]
+    },
+    {
+        "id": "5c39dd1b.58cf14",
+        "type": "moment",
+        "z": "395a3554.de723a",
+        "name": "Date format",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "MM/DD/yyyy",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 690,
+        "y": 2500,
+        "wires": [
+            [
+                "b1479e13.7ef81"
+            ]
+        ]
+    },
+    {
+        "id": "b1479e13.7ef81",
+        "type": "join",
+        "z": "395a3554.de723a",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 930,
+        "y": 2460,
+        "wires": [
+            [
+                "e65ed29c.961bc8"
+            ]
+        ]
+    },
+    {
+        "id": "e65ed29c.961bc8",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Compare Dates",
+        "func": "newmsg = {};\nif (msg.payload[0] == msg.payload[1]) {\n    newmsg.payload = \"True\";\n} else {\n    newmsg.payload = \"False\";\n}\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 960,
+        "y": 2500,
+        "wires": [
+            [
+                "3fcf1af4.959fc6"
+            ]
+        ]
+    },
+    {
+        "id": "3fcf1af4.959fc6",
+        "type": "switch",
+        "z": "395a3554.de723a",
+        "name": "Is it the right date?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "True",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 970,
+        "y": 2540,
+        "wires": [
+            [
+                "b5ea31a0.125658"
+            ]
+        ]
+    },
+    {
+        "id": "8d692144.c05e4",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "Set by Calendar",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.set_by_calendar",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 960,
+        "y": 2580,
+        "wires": [
+            [
+                "3bac8735.489b48"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b5ea31a0.125658",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Enable set by calendar",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.set_by_calendar",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1200,
+        "y": 2520,
+        "wires": [
+            [
+                "61fdab9c.d3e7e4"
+            ]
+        ]
+    },
+    {
+        "id": "8d2a6aa.00b2798",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn off set by calendar",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.set_by_calendar",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1630,
+        "y": 2520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61fdab9c.d3e7e4",
+        "type": "delay",
+        "z": "395a3554.de723a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1420,
+        "y": 2520,
+        "wires": [
+            [
+                "8d2a6aa.00b2798"
+            ]
+        ]
+    },
+    {
+        "id": "d8f5ebeb.9f7b48",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Loop Logic",
+        "info": "",
+        "x": 80,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "9d648313.d40e8",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Lighting",
+        "info": "",
+        "x": 810,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "7ccdf7d8.de53",
+        "type": "inject",
+        "z": "395a3554.de723a",
+        "name": "Volume ---->",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "volume",
+        "payloadType": "flow",
+        "x": 200,
+        "y": 1660,
+        "wires": [
+            [
+                "134911e8.a30e1e"
+            ]
+        ]
+    },
+    {
+        "id": "fd677146.35cf",
+        "type": "traffic",
+        "z": "395a3554.de723a",
+        "name": "Set Volume",
+        "property_allow": "payload",
+        "filter_allow": "start",
+        "ignore_case_allow": false,
+        "negate_allow": false,
+        "send_allow": false,
+        "property_stop": "payload",
+        "filter_stop": "snooze",
+        "ignore_case_stop": false,
+        "negate_stop": false,
+        "send_stop": false,
+        "default_start": false,
+        "differ": false,
+        "x": 610,
+        "y": 1660,
+        "wires": [
+            [
+                "71faf600.7eadec"
+            ]
+        ]
+    },
+    {
+        "id": "134911e8.a30e1e",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "CJ Radio?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cj_alarm_radio",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 410,
+        "y": 1660,
+        "wires": [
+            [
+                "fd677146.35cf"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "465bab10.827374",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Bedroom Alexa",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "play_media",
+        "entityId": "media_player.master_bedroom",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1060,
+        "y": 1660,
+        "wires": [
+            [
+                "452450c3.b9307"
+            ]
+        ]
+    },
+    {
+        "id": "46dfc395.6e6aec",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Volume",
+        "info": "",
+        "x": 810,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "71faf600.7eadec",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Set Volume",
+        "func": "newmsg = {}\nvar volume = flow.get(\"volume\");\n\nnewmsg.payload = { data: { \"volume_pct\":volume} }\n\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 830,
+        "y": 1660,
+        "wires": [
+            [
+                "465bab10.827374"
+            ]
+        ]
+    },
+    {
+        "id": "452450c3.b9307",
+        "type": "function",
+        "z": "395a3554.de723a",
+        "name": "Increment Volume",
+        "func": "var volume = flow.get('volume')||0;\n\nif (volume < 5) {\n    volume = volume + 1;\n    flow.set(\"volume\", volume);\n    \n    newmsg = {\"payload\":\"looping\"}\n    return newmsg;\n}\nelse {\n    newmsg = {\"payload\":\"done\"};\n    return newmsg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1270,
+        "y": 1660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c685939a.66359",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Snooze Timer",
+        "info": "",
+        "x": 430,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "4e46c7b9.f24188",
+        "type": "comment",
+        "z": "395a3554.de723a",
+        "name": "Snooze Button",
+        "info": "",
+        "x": 440,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "147d68db.7e776f",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Snooze On",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.cj_alarm_snooze",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 750,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "add27570.d45ff",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Pause Radio",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "media_pause",
+        "entityId": "media_player.master_bedroom",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1050,
+        "y": 1880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bff3aa0.01cb858",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "House Alarm on?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.house_alarm_enable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 770,
+        "y": 1760,
+        "wires": [
+            [
+                "acfcf580.ac18e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "acfcf580.ac18e",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn off House alarm",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.house_alarm_enable",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1000,
+        "y": 1760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "71f6b36a.05ddec",
+        "type": "api-current-state",
+        "z": "395a3554.de723a",
+        "name": "House Alarm on?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.house_alarm_enable",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 710,
+        "y": 3080,
+        "wires": [
+            [
+                "3d9ce9b7.0b9f8e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3d9ce9b7.0b9f8e",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn off House alarm",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.house_alarm_enable",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 940,
+        "y": 3080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "146654c4.fe69f3",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn on Kitchen light",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.shelly1_c4fdf1",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1080,
+        "y": 1600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1c5e067a.308caa",
+        "type": "api-call-service",
+        "z": "395a3554.de723a",
+        "name": "Turn on Kitchen light",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.shelly1_c4fdf1",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1180,
+        "y": 2760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe3ca3a3.8b9e5",
+        "type": "weekday",
+        "z": "395a3554.de723a",
+        "name": "AutoEnable-by-day",
+        "sun": false,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": false,
+        "x": 250,
+        "y": 600,
+        "wires": [
+            [
+                "90824873.9c3448",
+                "fcfbf1bb.9590f",
+                "1ccda375.9aa50d",
+                "8379d4ec.d7a2d8"
+            ],
+            [
+                "3fe875be.dd009a",
+                "144585af.987aaa",
+                "1ccda375.9aa50d",
+                "8379d4ec.d7a2d8"
+            ]
+        ]
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]

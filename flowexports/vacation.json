@@ -1,0 +1,493 @@
+[
+    {
+        "id": "39462126.29efee",
+        "type": "tab",
+        "label": "Vacation",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8fc70a3c.f67148",
+        "type": "server-state-changed",
+        "z": "39462126.29efee",
+        "name": "On Vacation",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.vacation",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "d468e835.cda368"
+            ]
+        ]
+    },
+    {
+        "id": "e820d109.c24cc",
+        "type": "api-call-service",
+        "z": "39462126.29efee",
+        "name": "Nightlite On",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.hue_color_lamp_4",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 830,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e060670f.2ebf78",
+        "type": "api-call-service",
+        "z": "39462126.29efee",
+        "name": "Nightlite Off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.hue_color_lamp_4",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 830,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c3b45d8.4d763a",
+        "type": "switch",
+        "z": "39462126.29efee",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 80,
+        "wires": [
+            [
+                "e820d109.c24cc"
+            ],
+            [
+                "e060670f.2ebf78"
+            ]
+        ]
+    },
+    {
+        "id": "df2a275e.a70838",
+        "type": "switch",
+        "z": "39462126.29efee",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 200,
+        "wires": [
+            [
+                "3f4d5bb9.7943b4"
+            ],
+            [
+                "a5fcc08b.919be"
+            ]
+        ]
+    },
+    {
+        "id": "3f4d5bb9.7943b4",
+        "type": "api-call-service",
+        "z": "39462126.29efee",
+        "name": "Side entry On",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.shelly_shsw_1_55e7ad",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 840,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a5fcc08b.919be",
+        "type": "api-call-service",
+        "z": "39462126.29efee",
+        "name": "Side entry Off",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.shelly_shsw_1_55e7ad",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 840,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9fb81a0a.73e078",
+        "type": "switch",
+        "z": "39462126.29efee",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 360,
+        "wires": [
+            [
+                "c123e5f7.0d20f8",
+                "a3622823.830ba8"
+            ],
+            [
+                "73d2a25b.1f130c",
+                "6ddba17b.68ab4"
+            ]
+        ]
+    },
+    {
+        "id": "c123e5f7.0d20f8",
+        "type": "api-call-service",
+        "z": "39462126.29efee",
+        "name": "CJ - WakeUp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.cj_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 830,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73d2a25b.1f130c",
+        "type": "api-call-service",
+        "z": "39462126.29efee",
+        "name": "CJ - WakeUp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.cj_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 830,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3622823.830ba8",
+        "type": "api-call-service",
+        "z": "39462126.29efee",
+        "name": "Jen - WakeUp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.jen_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 840,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6ddba17b.68ab4",
+        "type": "api-call-service",
+        "z": "39462126.29efee",
+        "name": "Jen - WakeUp",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.jen_alarm_running",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 840,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d468e835.cda368",
+        "type": "api-current-state",
+        "z": "39462126.29efee",
+        "name": "Nobody home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.occupied",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 200,
+        "y": 200,
+        "wires": [
+            [
+                "3b9b6505.1545da",
+                "47db5151.097bd",
+                "7d706202.e3605c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3b9b6505.1545da",
+        "type": "vacation-timer",
+        "z": "39462126.29efee",
+        "name": "Vacation timer (nightlites)",
+        "lat": "42.640212",
+        "lon": "-83.136262",
+        "turnOffOnDaysOff": true,
+        "midnightSchedule": true,
+        "onTime": "00:00",
+        "randMinutes": "30",
+        "offTime": "14:00",
+        "randOffMinutes": "0",
+        "minOnHours": "0",
+        "minOnMinutes": "10",
+        "maxOnHours": "0",
+        "maxOnMinutes": "15",
+        "stopTab": "tab-1",
+        "onPayloadType": "str",
+        "onPayloadVal": "on",
+        "onTopicVal": "",
+        "offPayloadType": "str",
+        "offPayloadVal": "off",
+        "offTopicVal": "",
+        "suspended": true,
+        "disableMax": false,
+        "sun": true,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "x": 450,
+        "y": 80,
+        "wires": [
+            [
+                "3c3b45d8.4d763a"
+            ]
+        ]
+    },
+    {
+        "id": "47db5151.097bd",
+        "type": "vacation-timer",
+        "z": "39462126.29efee",
+        "name": "Vacation timer (sunset)",
+        "lat": "42.640212",
+        "lon": "-83.136262",
+        "turnOffOnDaysOff": true,
+        "midnightSchedule": true,
+        "onTime": "sunset",
+        "randMinutes": "30",
+        "offTime": "14:00",
+        "randOffMinutes": "0",
+        "minOnHours": "0",
+        "minOnMinutes": "5",
+        "maxOnHours": "0",
+        "maxOnMinutes": "10",
+        "stopTab": "tab-1",
+        "onPayloadType": "str",
+        "onPayloadVal": "on",
+        "onTopicVal": "",
+        "offPayloadType": "str",
+        "offPayloadVal": "off",
+        "offTopicVal": "",
+        "suspended": true,
+        "disableMax": false,
+        "sun": true,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "df2a275e.a70838"
+            ]
+        ]
+    },
+    {
+        "id": "7d706202.e3605c",
+        "type": "vacation-timer",
+        "z": "39462126.29efee",
+        "name": "Vacation timer (morning)",
+        "lat": "42.640212",
+        "lon": "-83.136262",
+        "turnOffOnDaysOff": true,
+        "midnightSchedule": true,
+        "onTime": "sunrise",
+        "randMinutes": "30",
+        "offTime": "14:00",
+        "randOffMinutes": "0",
+        "minOnHours": "0",
+        "minOnMinutes": "15",
+        "maxOnHours": "0",
+        "maxOnMinutes": "20",
+        "stopTab": "tab-1",
+        "onPayloadType": "str",
+        "onPayloadVal": "on",
+        "onTopicVal": "",
+        "offPayloadType": "str",
+        "offPayloadVal": "off",
+        "offTopicVal": "",
+        "suspended": true,
+        "disableMax": false,
+        "sun": false,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": false,
+        "x": 450,
+        "y": 360,
+        "wires": [
+            [
+                "9fb81a0a.73e078"
+            ]
+        ]
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]

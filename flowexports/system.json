@@ -1,0 +1,2491 @@
+[
+    {
+        "id": "6a42a57e.13de6c",
+        "type": "tab",
+        "label": "System",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "15ce389b.201127",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "HACS Updates",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": " sensor.hacs",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "1",
+        "halt_if_type": "num",
+        "halt_if_compare": "gte",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 140,
+        "y": 40,
+        "wires": [
+            [
+                "f85cc426.470148"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1d4a69e0.f91d36",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Updates",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.updater",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "f85cc426.470148"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3bae6663.82967a",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Front Carriage light firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly_shsw_pm_c45421",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "757b3778.9586b8",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Landing lights firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly_shsw_1_55f0fe",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 210,
+        "y": 280,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "ae54d8ce.63e108",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Side Carriage light firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly_shsw_pm_c44770",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "c080203d.62b6d",
+        "type": "switch",
+        "z": "6a42a57e.13de6c",
+        "name": "Has Update",
+        "property": "attributes.has_firmware_update",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 400,
+        "wires": [
+            [
+                "f85cc426.470148"
+            ]
+        ]
+    },
+    {
+        "id": "418e3b79.afafb4",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Notify - HA",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"title\":\"Updates available\",\"message\":\"Updates to HA components are available.  Please test first!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1170,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "59e2d4bd.a335fc",
+        "type": "link in",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notifications",
+        "links": [
+            "f85cc426.470148"
+        ],
+        "x": 1035,
+        "y": 180,
+        "wires": [
+            [
+                "418e3b79.afafb4",
+                "733efabe.b81944"
+            ]
+        ]
+    },
+    {
+        "id": "f85cc426.470148",
+        "type": "link out",
+        "z": "6a42a57e.13de6c",
+        "name": "Send Update Notifications",
+        "links": [
+            "59e2d4bd.a335fc"
+        ],
+        "x": 735,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "dda55c28.b306e",
+        "type": "link in",
+        "z": "6a42a57e.13de6c",
+        "name": "Mobile Notificatons",
+        "links": [],
+        "x": 1035,
+        "y": 280,
+        "wires": [
+            [
+                "2e4484c6.1d415c"
+            ]
+        ]
+    },
+    {
+        "id": "2e4484c6.1d415c",
+        "type": "e-mail",
+        "z": "6a42a57e.13de6c",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "2036904969@tmomail.net",
+        "dname": "Home Assistant - Prod",
+        "x": 1200,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "31bac105.18f15e",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Side Entry Shelly Update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly_shsw_1_55e7ad",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 230,
+        "y": 340,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "cc9deddd.a298c",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Tori nightlight firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly_shsw_1_93f489",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 220,
+        "y": 400,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "4bee91da.c75c8",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Snapshot",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "hassio",
+        "service": "snapshot_full",
+        "entityId": "",
+        "data": "{}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 500,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca1179f0.3f37b8",
+        "type": "inject",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "ON",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 270,
+        "y": 820,
+        "wires": [
+            [
+                "4bee91da.c75c8"
+            ]
+        ]
+    },
+    {
+        "id": "5e226bdc.321a24",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Manual trigger backup",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.backup_trigger",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 220,
+        "y": 1000,
+        "wires": [
+            [
+                "4bee91da.c75c8",
+                "34913f1e.e94e6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "34913f1e.e94e6",
+        "type": "delay",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 500,
+        "y": 1000,
+        "wires": [
+            [
+                "d7231e0c.483bb"
+            ]
+        ]
+    },
+    {
+        "id": "d7231e0c.483bb",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.backup_trigger",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 730,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bcc682d.5a79d8",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Node-Red-WD",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.node_red",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 240,
+        "y": 1200,
+        "wires": [
+            [
+                "1310c5a9.a2d50a"
+            ]
+        ]
+    },
+    {
+        "id": "1310c5a9.a2d50a",
+        "type": "change",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "OK",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 1200,
+        "wires": [
+            [
+                "99f55302.b9f08"
+            ]
+        ]
+    },
+    {
+        "id": "99f55302.b9f08",
+        "type": "mqtt out",
+        "z": "6a42a57e.13de6c",
+        "name": "Checkin MQTT",
+        "topic": "checkin/nodered",
+        "qos": "0",
+        "retain": "false",
+        "broker": "19f2fec8.28ebf1",
+        "x": 760,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "8b178604.599468",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Toggle Node-Red Watchdog",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "toggle",
+        "entityId": "input_boolean.node_red",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 520,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36870e7e.2dfff2",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Kitchen Dot",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_kitchen",
+        "entityId": "",
+        "data": "{\"message\":\"This is a weekly test.  This is only a test\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1150,
+        "y": 1960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3920a3ce.f3354c",
+        "type": "inject",
+        "z": "6a42a57e.13de6c",
+        "name": "Manual Test",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 2000,
+        "wires": [
+            [
+                "34529917.9d20f6"
+            ]
+        ]
+    },
+    {
+        "id": "34529917.9d20f6",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Kitchen Do-not-Disturb?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.kitchen_do_not_disturb_switch",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 570,
+        "y": 1960,
+        "wires": [
+            [
+                "3961d38e.3e9e3c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "70f3ce68.933d6",
+        "type": "switch",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ON",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 1940,
+        "wires": [
+            [
+                "f57d58af.b9e328",
+                "77cdb56b.2caebc",
+                "34529917.9d20f6",
+                "d5670cca.3a9ea"
+            ]
+        ]
+    },
+    {
+        "id": "3673314a.2cedc6",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Kitchen light switch firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly_shsw_1_c4fdf1",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "8cc762eb.109a1",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Shelly bulb 1 firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "light.shelly_shblb_1_bc8574",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 220,
+        "y": 520,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "2ca55d05.9fdeb2",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Shelly bulb 2 firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "light.shelly_shblb_1_bc85f4",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 220,
+        "y": 580,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "ddc902d0.0ff188",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Light display firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly_shsw_1_c42687",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 220,
+        "y": 640,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "bd4719b8.1f588",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Bay Outlet firmware update",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.shelly_shsw_1_c4eb2d",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 230,
+        "y": 700,
+        "wires": [
+            [
+                "c080203d.62b6d"
+            ]
+        ]
+    },
+    {
+        "id": "31624147.4ef5ae",
+        "type": "inject",
+        "z": "6a42a57e.13de6c",
+        "name": "Trigger test",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 01 * * 6",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 130,
+        "y": 1940,
+        "wires": [
+            [
+                "70f3ce68.933d6"
+            ]
+        ]
+    },
+    {
+        "id": "f11599c0.4ccd58",
+        "type": "inject",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 01 * * 1",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 880,
+        "wires": [
+            [
+                "4bee91da.c75c8"
+            ]
+        ]
+    },
+    {
+        "id": "d5670cca.3a9ea",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Media Room Do-not-Disturb?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.media_room_do_not_disturb_switch",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 580,
+        "y": 2020,
+        "wires": [
+            [
+                "834d3080.8feeb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "77cdb56b.2caebc",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Master Bedroom Do-not-Disturb?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.master_bedroom_do_not_disturb_switch",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 600,
+        "y": 1900,
+        "wires": [
+            [
+                "32b25bae.b70b74"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f57d58af.b9e328",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Office Do-not-Disturb?",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.office_do_not_disturb_switch",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 560,
+        "y": 1840,
+        "wires": [
+            [
+                "c990a1f.c65206"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "73c8bfd1.59d99",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Office Dot",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_office",
+        "entityId": "",
+        "data": "{\"message\":\"This is a weekly test.  This is only a test\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1140,
+        "y": 1840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9fe98ce6.84b73",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Master Bedroom Dot",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_master_bedroom",
+        "entityId": "",
+        "data": "{\"message\":\"This is a weekly test.  This is only a test\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1180,
+        "y": 1900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2dbc1625.347fda",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Media Room Dot",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_media_room",
+        "entityId": "",
+        "data": "{\"message\":\"This is a weekly test.  This is only a test\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1170,
+        "y": 2020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3961d38e.3e9e3c",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Set Kitchen Volume",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.kitchen",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 890,
+        "y": 1960,
+        "wires": [
+            [
+                "36870e7e.2dfff2"
+            ]
+        ]
+    },
+    {
+        "id": "c990a1f.c65206",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Set Office Volume",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.office",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 890,
+        "y": 1840,
+        "wires": [
+            [
+                "73c8bfd1.59d99"
+            ]
+        ]
+    },
+    {
+        "id": "32b25bae.b70b74",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Set Master Bedroom Volume",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.master_bedroom",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 920,
+        "y": 1900,
+        "wires": [
+            [
+                "9fe98ce6.84b73"
+            ]
+        ]
+    },
+    {
+        "id": "834d3080.8feeb",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Set Media Room Volume",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.media_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 910,
+        "y": 2020,
+        "wires": [
+            [
+                "2dbc1625.347fda"
+            ]
+        ]
+    },
+    {
+        "id": "75c39297.fc77a4",
+        "type": "inject",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 1140,
+        "wires": [
+            [
+                "8b178604.599468"
+            ]
+        ]
+    },
+    {
+        "id": "f34a5cbe.9ef2",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "CJ Battery",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.battery_cj",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "20",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "10",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 160,
+        "y": 1340,
+        "wires": [
+            [
+                "ce19d31d.a57bd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4f7dfba.c7b7204",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Jen Battery",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.battery_jen",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "20",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "10",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 150,
+        "y": 1460,
+        "wires": [
+            [
+                "d1a59fd7.998ad"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ab15bcb9.a573",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Seb Battery",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.battery_seb",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "20",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "10",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 150,
+        "y": 1580,
+        "wires": [
+            [
+                "3c5ea248.89641e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9105a67e.3e1f98",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Tori Battery",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.battery_tori",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "20",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "10",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 150,
+        "y": 1700,
+        "wires": [
+            [
+                "f0756a04.744f78"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d1a59fd7.998ad",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notify - Jen Batt",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"title\":\"Battery Low - Jen\",\"message\":\"Battery is getting low ({{payload}}).  Please charge\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 490,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce19d31d.a57bd",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notify - CJ Batt",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"title\":\"Battery Low - CJ\",\"message\":\"Battery is getting low ({{payload}}).  Please charge\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 490,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c5ea248.89641e",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notify - Seb Batt",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"title\":\"Battery Low - Seb\",\"message\":\"Battery is getting low ({{payload}}).  Please charge\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 500,
+        "y": 1560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f0756a04.744f78",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notify - Tori Batt",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"title\":\"Battery Low - Tori\",\"message\":\"Battery is getting low ({{payload}}).  Please charge\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 490,
+        "y": 1680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d289aa2.6940f8",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notify - Tori Batt (Dismiss)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "dismiss",
+        "entityId": "",
+        "data": "{\"title\":\"Battery Low - Tori\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 530,
+        "y": 1740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "74fdc833.cb1e68",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notify - Seb Batt (Dismiss)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "dismiss",
+        "entityId": "",
+        "data": "{\"title\":\"Battery Low - Seb\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 530,
+        "y": 1620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eea1fc0e.fb12d",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notify - Jen Batt (Dismiss)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "dismiss",
+        "entityId": "",
+        "data": "{\"title\":\"Battery Low - Jen\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 530,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69b3252d.22ddec",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "HA Notify - CJ Batt (Dismiss)",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "dismiss",
+        "entityId": "",
+        "data": "{\"title\":\"Battery Low - CJ\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 520,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef7a0607.f85898",
+        "type": "switch",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "100",
+                "vt": "num"
+            },
+            {
+                "t": "lte",
+                "v": "15",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 890,
+        "y": 480,
+        "wires": [
+            [
+                "6f4cdc84.4b2f64"
+            ],
+            [
+                "54710b0a.081c74"
+            ]
+        ]
+    },
+    {
+        "id": "6f4cdc84.4b2f64",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Turn off media charge controller",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.shelly1_c4ec2f",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1130,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54710b0a.081c74",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Turn on media charge controller",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.shelly1_c4ec2f",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1130,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e475cbf1.c6039",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Media Room Panel Battery",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.media_room_panel_battery",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 690,
+        "y": 480,
+        "wires": [
+            [
+                "ef7a0607.f85898"
+            ]
+        ]
+    },
+    {
+        "id": "933a66b3.5ae968",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Notify CJ-Mobile",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_cj_phone",
+        "entityId": "",
+        "data": "{\"message\":\"{{data.attributes.friendly_name}} phone needs to be charged!\",\"title\":\"Alert!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1860,
+        "y": 1420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "56cb36ea.07b778",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Notify Jen-Mobile",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_lm_g820",
+        "entityId": "",
+        "data": "{\"message\":\"{{data.attributes.friendly_name}} phone needs to be charged!\",\"title\":\"Alert!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1870,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eef691e2.0fefc",
+        "type": "inject",
+        "z": "6a42a57e.13de6c",
+        "name": "Afternoon charging state",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 21 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 850,
+        "y": 1460,
+        "wires": [
+            [
+                "22ea8d2f.395f92",
+                "2800933f.d2778c",
+                "ff04e6de.e4a768",
+                "4b04c172.6aecc"
+            ]
+        ]
+    },
+    {
+        "id": "2800933f.d2778c",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "CJ Phone",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "device_tracker.google_maps_103298389060901230903",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1080,
+        "y": 1380,
+        "wires": [
+            [
+                "dd18a100.ed4ca"
+            ]
+        ]
+    },
+    {
+        "id": "ff04e6de.e4a768",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Tori Phone",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "device_tracker.google_maps_104665180205749213751",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1090,
+        "y": 1440,
+        "wires": [
+            [
+                "dd18a100.ed4ca"
+            ]
+        ]
+    },
+    {
+        "id": "22ea8d2f.395f92",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Seb Phone",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "device_tracker.google_maps_108388660046996653768",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1090,
+        "y": 1500,
+        "wires": [
+            [
+                "dd18a100.ed4ca"
+            ]
+        ]
+    },
+    {
+        "id": "4b04c172.6aecc",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Jen Phone",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "device_tracker.google_maps_109285548108349468571",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1090,
+        "y": 1560,
+        "wires": [
+            [
+                "dd18a100.ed4ca"
+            ]
+        ]
+    },
+    {
+        "id": "dd18a100.ed4ca",
+        "type": "switch",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "property": "data.attributes.battery_charging",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1330,
+        "y": 1460,
+        "wires": [
+            [
+                "7d22c889.c810e8"
+            ]
+        ]
+    },
+    {
+        "id": "7d22c889.c810e8",
+        "type": "switch",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "property": "data.attributes.battery_level",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "20",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1470,
+        "y": 1460,
+        "wires": [
+            [
+                "e2801180.b479b",
+                "eb6bc67a.317308"
+            ]
+        ]
+    },
+    {
+        "id": "e2801180.b479b",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "CJ Notify Enabled",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.cj_notify",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1650,
+        "y": 1420,
+        "wires": [
+            [
+                "933a66b3.5ae968"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "eb6bc67a.317308",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Jen Notify Enabled",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.jen_notify",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1650,
+        "y": 1500,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "46c0878e.c80a08",
+        "type": "delay",
+        "z": "6a42a57e.13de6c",
+        "d": true,
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "120",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1150,
+        "y": 940,
+        "wires": [
+            [
+                "e027e090.9dab7"
+            ]
+        ]
+    },
+    {
+        "id": "e027e090.9dab7",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "d": true,
+        "name": "hassio",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "hassio",
+        "service": "addon_stdin",
+        "entityId": "",
+        "data": "{\"addon\":\"7be23ff5_dropbox_sync\",\"input\":{\"command\":\"upload\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 1330,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fd7fcc3d.9db9b",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "d": true,
+        "name": "Manual trigger sync",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.dropbox_trigger",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 1130,
+        "y": 880,
+        "wires": [
+            [
+                "e027e090.9dab7",
+                "10b2d880.9a1b98"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "10b2d880.9a1b98",
+        "type": "delay",
+        "z": "6a42a57e.13de6c",
+        "d": true,
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1360,
+        "y": 880,
+        "wires": [
+            [
+                "ee80669.fb28898"
+            ]
+        ]
+    },
+    {
+        "id": "ee80669.fb28898",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "d": true,
+        "name": "",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.dropbox_trigger",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1580,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83c2af55.6cc13",
+        "type": "server-state-changed",
+        "z": "6a42a57e.13de6c",
+        "name": "Kitchen Panel Battery",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.kitchen_panel_battery",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 640,
+        "y": 680,
+        "wires": [
+            [
+                "a6ac3807.028588"
+            ]
+        ]
+    },
+    {
+        "id": "27a7cac9.2fb7a6",
+        "type": "switch",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "100",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "15",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1090,
+        "y": 760,
+        "wires": [
+            [
+                "a6478817.5f2cb8"
+            ],
+            [
+                "8a796c9e.337b4"
+            ]
+        ]
+    },
+    {
+        "id": "fd0bb7cb.d3816",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Kitchen Panel needs charging",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"title\":\"Charging Needed!\",\"message\":\"Kitchen Panel requires charging ({{payload}}%)\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1330,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "96d6fd37.6a1198",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Kitchen Panel Charged",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "persistent_notification",
+        "service": "create",
+        "entityId": "",
+        "data": "{\"title\":\"Fully Charged!\",\"message\":\"Kitchen Panel has been fully charge.  Please disconnect!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1310,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "733efabe.b81944",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Notify - Slack",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "ha",
+        "entityId": "",
+        "data": "{\"title\":\"Updates available\",\"message\":\"Updates to HA components are available.  Please test first!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1170,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a6478817.5f2cb8",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Kitchen Panel Charged",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "ha",
+        "entityId": "",
+        "data": "{\"title\":\"Fully Charged!\",\"message\":\"Kitchen Panel has been fully charge.  Please disconnect!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1310,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a796c9e.337b4",
+        "type": "api-call-service",
+        "z": "6a42a57e.13de6c",
+        "name": "Kitchen Panel needs charging",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "ha",
+        "entityId": "",
+        "data": "{\"title\":\"Charging Needed!\",\"message\":\"Kitchen Panel requires charging ({{payload}}%)\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1330,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a6ac3807.028588",
+        "type": "api-current-state",
+        "z": "6a42a57e.13de6c",
+        "name": "Notify HA if home",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "person.cj",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 870,
+        "y": 680,
+        "wires": [
+            [
+                "63648d79.c0e6b4"
+            ],
+            [
+                "27a7cac9.2fb7a6"
+            ]
+        ]
+    },
+    {
+        "id": "63648d79.c0e6b4",
+        "type": "switch",
+        "z": "6a42a57e.13de6c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "100",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "15",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1090,
+        "y": 620,
+        "wires": [
+            [
+                "96d6fd37.6a1198"
+            ],
+            [
+                "fd0bb7cb.d3816"
+            ]
+        ]
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    },
+    {
+        "id": "19f2fec8.28ebf1",
+        "type": "mqtt-broker",
+        "name": "HASSIO Mosquitto Broker",
+        "broker": "10.20.0.21",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

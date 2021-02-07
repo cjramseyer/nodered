@@ -1,0 +1,1004 @@
+[
+    {
+        "id": "6006f1f.70c981",
+        "type": "tab",
+        "label": "HVAC",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8f43c614.ef2158",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Add HVAC runtime",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_number",
+        "service": "set_value",
+        "entityId": "input_number.hvac_runtime",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1130,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc8de10e.621ee",
+        "type": "inject",
+        "z": "6006f1f.70c981",
+        "name": "Store HVAC runtime trigger",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "01 12 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 60,
+        "wires": [
+            [
+                "649fe64c.e088a8",
+                "1d96b77d.04b799",
+                "9ac69b1.ae5c468",
+                "a5348410.1bb1d8",
+                "13060d8e.6a94a2"
+            ]
+        ]
+    },
+    {
+        "id": "9ac69b1.ae5c468",
+        "type": "api-current-state",
+        "z": "6006f1f.70c981",
+        "name": "Get current filter runtime",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_number.hvac_runtime",
+        "state_type": "num",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 490,
+        "y": 60,
+        "wires": [
+            [
+                "d4210899.a00c08"
+            ]
+        ]
+    },
+    {
+        "id": "649fe64c.e088a8",
+        "type": "api-current-state",
+        "z": "6006f1f.70c981",
+        "name": "Get Cooling time yesterday",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "sensor.cooling_time_yesterday",
+        "state_type": "num",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 500,
+        "y": 120,
+        "wires": [
+            [
+                "94d35f7.1e0d4a"
+            ]
+        ]
+    },
+    {
+        "id": "1d96b77d.04b799",
+        "type": "api-current-state",
+        "z": "6006f1f.70c981",
+        "name": "Get Heating time yesterday",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "sensor.heating_time_yesterday",
+        "state_type": "num",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 500,
+        "y": 180,
+        "wires": [
+            [
+                "1a05d2b.b293a2d"
+            ]
+        ]
+    },
+    {
+        "id": "9db738a5.957e88",
+        "type": "join",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 950,
+        "y": 60,
+        "wires": [
+            [
+                "66a77add.2d8564"
+            ]
+        ]
+    },
+    {
+        "id": "94d35f7.1e0d4a",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 120,
+        "wires": [
+            [
+                "9db738a5.957e88",
+                "1497ed90.f90542"
+            ]
+        ]
+    },
+    {
+        "id": "1a05d2b.b293a2d",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 180,
+        "wires": [
+            [
+                "9db738a5.957e88",
+                "6b597214.cebdac"
+            ]
+        ]
+    },
+    {
+        "id": "66a77add.2d8564",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "$sum(payload)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$sum(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 60,
+        "wires": [
+            [
+                "2bff69dd.81db86"
+            ]
+        ]
+    },
+    {
+        "id": "d4210899.a00c08",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 60,
+        "wires": [
+            [
+                "9db738a5.957e88"
+            ]
+        ]
+    },
+    {
+        "id": "2bff69dd.81db86",
+        "type": "function",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "func": "const origValue = msg.payload;\nconst newValue = origValue.toFixed(1);\n\nmsg.payload  = { \n    \"data\": {   \n        value: newValue\n    }\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1100,
+        "y": 120,
+        "wires": [
+            [
+                "8f43c614.ef2158"
+            ]
+        ]
+    },
+    {
+        "id": "8a982ba2.d6d2f8",
+        "type": "server-state-changed",
+        "z": "6006f1f.70c981",
+        "name": "Change furnace filter",
+        "server": "543e2171.45071",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.change_filter",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 130,
+        "y": 480,
+        "wires": [
+            [
+                "ecf8234b.47953",
+                "600a6108.a1751",
+                "ea49f5d4.b361c8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fd9d97cf.07cda8",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Set Furnace filter change date",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_text",
+        "service": "set_value",
+        "entityId": "input_text.furnace_filter",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1110,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ecf8234b.47953",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Reset HVAC runtime",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_number",
+        "service": "set_value",
+        "entityId": "",
+        "data": "{\"entity_id\":\"input_number.hvac_runtime\",\"value\":\"0\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 480,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39a4b54c.e9e4ba",
+        "type": "moment",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Detroit",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "C",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Detroit",
+        "x": 680,
+        "y": 540,
+        "wires": [
+            [
+                "41e82f8a.3cbf"
+            ]
+        ]
+    },
+    {
+        "id": "41e82f8a.3cbf",
+        "type": "function",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "func": "const newValue = msg.payload;\n\nmsg.payload  = { \n    \"data\": {   \n        value: newValue\n    }\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 880,
+        "y": 540,
+        "wires": [
+            [
+                "fd9d97cf.07cda8"
+            ]
+        ]
+    },
+    {
+        "id": "600a6108.a1751",
+        "type": "delay",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 440,
+        "y": 600,
+        "wires": [
+            [
+                "9251e6bc.690298"
+            ]
+        ]
+    },
+    {
+        "id": "9251e6bc.690298",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Reset",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.change_filter",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 580,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea49f5d4.b361c8",
+        "type": "trigger",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "date",
+        "op2type": "str",
+        "duration": "250",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 2,
+        "x": 460,
+        "y": 540,
+        "wires": [
+            [
+                "39a4b54c.e9e4ba"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d1eafb2d.635d38",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Add Monthly HVAC Heating runtime",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_number",
+        "service": "set_value",
+        "entityId": "input_number.hvac_heating_cur_month",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1400,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d9d65c37.d109c",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Add Monthly HVAC Cooling runtime",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_number",
+        "service": "set_value",
+        "entityId": "input_number.hvac_cooling_cur_month",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1400,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1497ed90.f90542",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "$sum(payload)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$sum(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 980,
+        "y": 260,
+        "wires": [
+            [
+                "330dd35a.1a105c"
+            ]
+        ]
+    },
+    {
+        "id": "330dd35a.1a105c",
+        "type": "function",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "func": "const origValue = msg.payload;\nconst newValue = origValue.toFixed(1);\n\nmsg.payload  = { \n    \"data\": {   \n        value: newValue\n    }\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1160,
+        "y": 260,
+        "wires": [
+            [
+                "d9d65c37.d109c"
+            ]
+        ]
+    },
+    {
+        "id": "6b597214.cebdac",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "$sum(payload)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$sum(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 980,
+        "y": 320,
+        "wires": [
+            [
+                "606fea6d.569354"
+            ]
+        ]
+    },
+    {
+        "id": "606fea6d.569354",
+        "type": "function",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "func": "const origValue = msg.payload;\nconst newValue = origValue.toFixed(1);\n\nmsg.payload  = { \n    \"data\": {   \n        value: newValue\n    }\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1160,
+        "y": 320,
+        "wires": [
+            [
+                "d1eafb2d.635d38"
+            ]
+        ]
+    },
+    {
+        "id": "e998b864.8f1b78",
+        "type": "cronplus",
+        "z": "6006f1f.70c981",
+        "name": "First day of month",
+        "outputField": "payload",
+        "timeZone": "",
+        "persistDynamic": false,
+        "commandResponseMsgOutput": "output2",
+        "outputs": 2,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "schedule1",
+                "payloadType": "default",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "01 12  1 * *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 210,
+        "y": 840,
+        "wires": [
+            [
+                "b9cd9539.af1b98",
+                "7fb8195c.a3c8e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b9cd9539.af1b98",
+        "type": "api-current-state",
+        "z": "6006f1f.70c981",
+        "name": "Get Total time This Month",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_number.hvac_total_cur_month",
+        "state_type": "num",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 470,
+        "y": 840,
+        "wires": [
+            [
+                "2043edae.214d62"
+            ]
+        ]
+    },
+    {
+        "id": "207d743f.ffabfc",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Set previous month usage to tal current on last day",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_number",
+        "service": "set_value",
+        "entityId": "input_number.hvac_total_pre_month",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1070,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7fb8195c.a3c8e8",
+        "type": "delay",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 420,
+        "y": 900,
+        "wires": [
+            [
+                "7b7b0292.d4b3fc"
+            ]
+        ]
+    },
+    {
+        "id": "7b7b0292.d4b3fc",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Set Total current monthly usage to 0",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_number",
+        "service": "set_value",
+        "entityId": "input_number.hvac_total_cur_month",
+        "data": "{\"value\":0}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 810,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d6f1484d.5feb68",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "$sum(payload)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$sum(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 380,
+        "wires": [
+            [
+                "57289439.87716c"
+            ]
+        ]
+    },
+    {
+        "id": "57289439.87716c",
+        "type": "function",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "func": "const origValue = msg.payload;\nconst newValue = origValue.toFixed(1);\n\nmsg.payload  = { \n    \"data\": {   \n        value: newValue\n    }\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1260,
+        "y": 380,
+        "wires": [
+            [
+                "ef728629.f72d28"
+            ]
+        ]
+    },
+    {
+        "id": "b5f9ce68.8aabf",
+        "type": "join",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 910,
+        "y": 380,
+        "wires": [
+            [
+                "d6f1484d.5feb68"
+            ]
+        ]
+    },
+    {
+        "id": "a5348410.1bb1d8",
+        "type": "api-current-state",
+        "z": "6006f1f.70c981",
+        "name": "Get Monthly Cooling time",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_number.hvac_cooling_cur_month",
+        "state_type": "num",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 490,
+        "y": 320,
+        "wires": [
+            [
+                "f4544a84.d8dbe8"
+            ]
+        ]
+    },
+    {
+        "id": "13060d8e.6a94a2",
+        "type": "api-current-state",
+        "z": "6006f1f.70c981",
+        "name": "Get Monthly Heating time",
+        "server": "543e2171.45071",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": true,
+        "entity_id": "input_number.hvac_heating_cur_month",
+        "state_type": "num",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "1736cfe1.b2c02"
+            ]
+        ]
+    },
+    {
+        "id": "f4544a84.d8dbe8",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 320,
+        "wires": [
+            [
+                "b5f9ce68.8aabf"
+            ]
+        ]
+    },
+    {
+        "id": "1736cfe1.b2c02",
+        "type": "change",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 380,
+        "wires": [
+            [
+                "b5f9ce68.8aabf"
+            ]
+        ]
+    },
+    {
+        "id": "ef728629.f72d28",
+        "type": "api-call-service",
+        "z": "6006f1f.70c981",
+        "name": "Add Monthly HVAC Total",
+        "server": "543e2171.45071",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_number",
+        "service": "set_value",
+        "entityId": "input_number.hvac_total_cur_month",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1470,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2043edae.214d62",
+        "type": "function",
+        "z": "6006f1f.70c981",
+        "name": "",
+        "func": "const origValue = msg.payload;\nconst newValue = origValue.toFixed(1);\n\nmsg.payload  = { \n    \"data\": {   \n        value: newValue\n    }\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 840,
+        "wires": [
+            [
+                "207d743f.ffabfc"
+            ]
+        ]
+    },
+    {
+        "id": "543e2171.45071",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]
